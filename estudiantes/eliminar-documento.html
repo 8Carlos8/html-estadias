@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UTH - Eliminar Documento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-gray-100 flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+            <!-- Header with close button -->
+            <div class="p-4 border-b border-green-700">
+                <div class="flex items-center">
+                    <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="p-6 text-center border-b border-green-700">
+                <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
+                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" 
+                         alt="José Luna Hernández" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-semibold text-sm">José Luna Hernández</h3>
+                <p class="text-xs text-green-200 mb-2">Docente</p>
+                <p class="text-xs text-green-200">Ing. en Sistemas Computacionales</p>
+                <p class="text-xs text-green-200">Coordinador de Estadías</p>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="flex-1 py-4">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="inicio.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-home w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mi-estadia.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-clipboard-list w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Mi Estadía</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cronograma.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-chart-line w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Cronograma</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visualizar-documentos.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left bg-green-700 rounded transition-colors">
+                            <i class="fas fa-folder w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Documentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendarioS.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-calendar-alt w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Seguimiento</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- Left side - Menu Toggle and UTN Logo -->
+                    <div class="flex items-center space-x-4">
+                        <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
+                    </div>
+
+                    <!-- Right side buttons -->
+                    <div class="flex space-x-3">
+                        <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                            Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div id="mainContent" class="flex-1 p-8 bg-gray-50">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                            <h1 class="text-xl font-medium text-gray-800">Eliminar Documento</h1>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="visualizar-documentos.html" class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-arrow-left mr-2"></i>Volver a Lista
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Warning Card -->
+                    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-triangle text-red-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-red-700">
+                                    <strong>Advertencia:</strong> Esta acción no se puede deshacer. Una vez eliminado, el documento no podrá ser recuperado.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Document Details Card -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Detalles del Documento a Eliminar</h3>
+                        
+                        <!-- Document Info -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Left Column -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Estudiante</label>
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden mr-3">
+                                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Carlos" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900" id="studentName">Carlos Martínez</p>
+                                            <p class="text-sm text-gray-500" id="studentId">3522110450</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Nombre del Archivo</label>
+                                    <p class="text-sm text-gray-900" id="fileName">Informe_Parcial_1.pdf</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tamaño</label>
+                                    <p class="text-sm text-gray-900" id="fileSize">2.4 MB</p>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Documento</label>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800" id="documentType">
+                                        Informe Parcial
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Estado</label>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800" id="documentStatus">
+                                        Pendiente
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Fecha de Subida</label>
+                                    <p class="text-sm text-gray-900" id="uploadDate">15 Jul 2025</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Description -->
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                            <p class="text-sm text-gray-900" id="documentDescription">
+                                Primer informe parcial del desarrollo del sistema de gestión de inventarios.
+                            </p>
+                        </div>
+
+                        <!-- File Preview -->
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Archivo</label>
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-file-pdf text-red-500 text-2xl"></i>
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">Informe_Parcial_1.pdf</p>
+                                            <p class="text-sm text-gray-500">2.4 MB</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button type="button" class="text-blue-600 hover:text-blue-800" title="Descargar">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button type="button" class="text-green-600 hover:text-green-800" title="Ver">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Form -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Confirmar Eliminación</h3>
+                        
+                        <form id="deleteForm">
+                            <input type="hidden" id="documentIdToDelete" name="documentId" value="doc_123">
+                            
+                            <!-- Reason for Deletion -->
+                            <div class="mb-6">
+                                <label for="deleteReason" class="block text-sm font-medium text-gray-700 mb-2">Motivo de la eliminación</label>
+                                <select id="deleteReason" name="deleteReason" required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500">
+                                    <option value="">Seleccionar motivo</option>
+                                    <option value="documento-incorrecto">Documento incorrecto</option>
+                                    <option value="archivo-corrupto">Archivo corrupto o dañado</option>
+                                    <option value="version-obsoleta">Versión obsoleta</option>
+                                    <option value="solicitud-estudiante">Solicitud del estudiante</option>
+                                    <option value="politicas-incumplimiento">Incumplimiento de políticas</option>
+                                    <option value="duplicado">Documento duplicado</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+
+                            <!-- Additional Comments -->
+                            <div class="mb-6">
+                                <label for="deleteComments" class="block text-sm font-medium text-gray-700 mb-2">Comentarios adicionales (opcional)</label>
+                                <textarea id="deleteComments" name="deleteComments" rows="4"
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
+                                          placeholder="Explicación adicional sobre la eliminación..."></textarea>
+                            </div>
+
+                            <!-- Confirmation Checkbox -->
+                            <div class="mb-6">
+                                <div class="flex items-center">
+                                    <input id="confirmDelete" name="confirmDelete" type="checkbox" required
+                                           class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                                    <label for="confirmDelete" class="ml-2 block text-sm text-gray-900">
+                                        Confirmo que deseo eliminar este documento permanentemente. Entiendo que esta acción no se puede deshacer.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex justify-end space-x-3">
+                                <a href="visualizar-documentos.html" class="px-6 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors">
+                                    Cancelar
+                                </a>
+                                <button type="submit" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                    <i class="fas fa-trash mr-2"></i>Eliminar Documento
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteConfirmModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-800">¿Eliminar Documento?</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+                Esta acción es irreversible. Una vez eliminado, el documento no podrá ser recuperado.
+            </p>
+            <div class="flex space-x-3 justify-end">
+                <button id="cancelDelete" class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+                    Cancelar
+                </button>
+                <button id="confirmDeleteBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-check text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-800">Documento Eliminado</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+                El documento ha sido eliminado exitosamente del sistema.
+            </p>
+            <div class="flex space-x-3 justify-end">
+                <button id="viewDocuments" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors">
+                    Volver a Lista
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+                <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                <h3 class="text-lg font-medium text-gray-800">Cerrar Sesión</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+                ¿Estás seguro de que deseas cerrar tu sesión?
+            </p>
+            <div class="flex space-x-3 justify-end">
+                <button id="cancelLogout" class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+                    Cancelar
+                </button>
+                <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="eliminar.js"></script>
+    <script src="shared.js"></script>
+</body>
+</html>

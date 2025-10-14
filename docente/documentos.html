@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UTH - Documentos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-gray-100 flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+            <!-- Header with close button -->
+            <div class="p-4 border-b border-green-700">
+                <div class="flex items-center">
+                    <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="p-6 text-center border-b border-green-700">
+                <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
+                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" 
+                         alt="José Luna Hernández" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-semibold text-sm">José Luna Hernández</h3>
+                <p class="text-xs text-green-200 mb-2">Docente</p>
+                <p class="text-xs text-green-200">Ing. en Sistemas Computacionales</p>
+                <p class="text-xs text-green-200">Coordinador de Estadías</p>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="flex-1 py-4">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="inicio.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-home w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mi-estadia.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-clipboard-list w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Mi Estadía</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cronograma.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-chart-line w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Cronograma</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="documentos.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left bg-green-700 rounded transition-colors">
+                            <i class="fas fa-folder w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Documentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendarioS.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-calendar-alt w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Seguimiento</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- Left side - Menu Toggle and UTN Logo -->
+                    <div class="flex items-center space-x-4">
+                        <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
+                    </div>
+
+                    <!-- Right side buttons -->
+                    <div class="flex space-x-3">
+                        <!-- Notifications Button -->
+                        <div class="relative">
+                            <button id="notificationsBtn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                </svg>
+                                <span id="notificationBadge" class="notification-badge">8</span>
+                            </button>
+                            
+                            <!-- Notifications Dropdown -->
+                            <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                <div class="p-4 border-b border-gray-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-sm font-medium">Notificaciones</h3>
+                                        <button id="closeNotifications" class="text-gray-400 hover:text-gray-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="max-h-64 overflow-y-auto">
+                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="w-2 h-2 rounded-full mt-2 bg-blue-500"></div>
+                                            <div class="flex-1">
+                                                <h4 class="text-sm font-medium text-gray-800">Nuevos documentos</h4>
+                                                <p class="text-xs text-gray-600 mt-1">5 documentos pendientes de revisión</p>
+                                                <p class="text-xs text-gray-400 mt-1">Hace 15 min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Logout Button -->
+                        <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                            Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div id="mainContent" class="flex-1 p-8 bg-gray-50">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-5L12 5H5a2 2 0 00-2 2z"></path>
+                            </svg>
+                            <h1 class="text-xl font-medium text-gray-800">Gestión de Documentos</h1>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>Exportar Todo
+                            </button>
+                            <button class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-filter mr-2"></i>Filtros
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-blue-100 rounded-full">
+                                    <i class="fas fa-file-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Documentos</p>
+                                    <p class="text-2xl font-bold text-gray-900">156</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-yellow-100 rounded-full">
+                                    <i class="fas fa-clock text-yellow-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Pendientes Revisión</p>
+                                    <p class="text-2xl font-bold text-gray-900">23</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-green-100 rounded-full">
+                                    <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Aprobados</p>
+                                    <p class="text-2xl font-bold text-gray-900">118</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-red-100 rounded-full">
+                                    <i class="fas fa-times-circle text-red-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Rechazados</p>
+                                    <p class="text-2xl font-bold text-gray-900">15</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-8 px-6">
+                                <button class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                                    Todos los documentos
+                                </button>
+                                <button class="border-green-500 text-green-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    Pendientes de revisión
+                                </button>
+                                <button class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                                    Aprobados
+                                </button>
+                                <button class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                                    Rechazados
+                                </button>
+                            </nav>
+                        </div>
+
+                        <!-- Documents Table -->
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiante</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Documento</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Carlos" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Carlos Martínez</div>
+                                                    <div class="text-sm text-gray-500">3522110450</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">Informe_Parcial_1.pdf</div>
+                                            <div class="text-sm text-gray-500">2.4 MB</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                                Informe Parcial
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            15 Jul 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Revisar">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3" title="Descargar">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Aprobar">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Rechazar">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Ana" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Ana González</div>
+                                                    <div class="text-sm text-gray-500">3522114875</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">Carta_Presentacion.docx</div>
+                                            <div class="text-sm text-gray-500">1.8 MB</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                Carta Presentación
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            14 Jul 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Revisar">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3" title="Descargar">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Aprobar">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Rechazar">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                                    <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Luis" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Luis Pérez</div>
+                                                    <div class="text-sm text-gray-500">3522110653</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">Plan_Trabajo.pdf</div>
+                                            <div class="text-sm text-gray-500">3.2 MB</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Plan de Trabajo
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            13 Jul 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Revisar">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3" title="Descargar">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Aprobar">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Rechazar">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                            <div class="flex-1 flex justify-between sm:hidden">
+                                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Anterior
+                                </button>
+                                <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Siguiente
+                                </button>
+                            </div>
+                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">10</span> de <span class="font-medium">23</span> resultados
+                                    </p>
+                                </div>
+                                <div>
+                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                                        <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="bg-green-50 border-green-500 text-green-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">1</button>
+                                        <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">2</button>
+                                        <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">3</button>
+                                        <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+                <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                <h3 class="text-lg font-medium text-gray-800">Cerrar Sesión</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+                ¿Estás seguro de que deseas cerrar tu sesión? Tendrás que volver a iniciar sesión para acceder al sistema.
+            </p>
+            <div class="flex space-x-3 justify-end">
+                <button id="cancelLogout" class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+                    Cancelar
+                </button>
+                <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UTH - Inicio Docente</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-gray-100 flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+            <!-- Header with close button -->
+            <div class="p-4 border-b border-green-700">
+                <div class="flex items-center">
+                    <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="p-6 text-center border-b border-green-700">
+                <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
+                    <img src="../img/image.png" 
+                         alt="Foto de perfil" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-semibold text-sm">José Luna Hernández</h3>
+                <p class="text-xs text-green-200 mb-2">Docente</p>
+                <p class="text-xs text-green-200">Ing. en Sistemas Computacionales</p>
+                <p class="text-xs text-green-200">Coordinador de Estadías</p>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="flex-1 py-4">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="inicio.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left bg-green-700 rounded transition-colors">
+                            <i class="fas fa-home w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mi-estadia.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-clipboard-list w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Mi Estadía</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cronograma.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-chart-line w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Cronograma</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="documentos.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-folder w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Documentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendarioS.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-calendar-alt w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Seguimiento</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- Left side - Menu Toggle and UTN Logo -->
+                    <div class="flex items-center space-x-4">
+                        <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
+                    </div>
+
+                    <!-- Right side buttons -->
+                    <div class="flex space-x-3">
+                        <!-- Notifications Button -->
+                        <div class="relative">
+                            <button id="notificationsBtn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                </svg>
+                                <span id="notificationBadge" class="notification-badge">5</span>
+                            </button>
+                            
+                            <!-- Notifications Dropdown -->
+                            <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                <div class="p-4 border-b border-gray-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-sm font-medium">Notificaciones</h3>
+                                        <button id="closeNotifications" class="text-gray-400 hover:text-gray-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="max-h-64 overflow-y-auto">
+                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="w-2 h-2 rounded-full mt-2 bg-green-500"></div>
+                                            <div class="flex-1">
+                                                <h4 class="text-sm font-medium text-gray-800">Nuevo documento subido</h4>
+                                                <p class="text-xs text-gray-600 mt-1">Carlos Martínez subió su informe parcial</p>
+                                                <p class="text-xs text-gray-400 mt-1">Hace 1 hora</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="w-2 h-2 rounded-full mt-2 bg-yellow-500"></div>
+                                            <div class="flex-1">
+                                                <h4 class="text-sm font-medium text-gray-800">Revisión pendiente</h4>
+                                                <p class="text-xs text-gray-600 mt-1">3 documentos esperan tu revisión</p>
+                                                <p class="text-xs text-gray-400 mt-1">Hace 2 horas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Logout Button -->
+                        <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                            Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div id="mainContent" class="flex-1 p-8 bg-gray-50">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex items-center mb-6">
+                        <svg class="w-5 h-5 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <h1 class="text-xl font-medium text-gray-800">Dashboard - Estudiantes Asignados</h1>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-blue-100 rounded-full">
+                                    <i class="fas fa-users text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Estudiantes Activos</p>
+                                    <p class="text-2xl font-bold text-gray-900">12</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-green-100 rounded-full">
+                                    <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Documentos Aprobados</p>
+                                    <p class="text-2xl font-bold text-gray-900">28</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-yellow-100 rounded-full">
+                                    <i class="fas fa-clock text-yellow-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Pendientes Revisión</p>
+                                    <p class="text-2xl font-bold text-gray-900">5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-800">Estudiantes Asignados</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiante</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Carrera</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progreso</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Carlos" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Carlos Martínez Gómez</div>
+                                                    <div class="text-sm text-gray-500">3522110450</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ing. Desarrollo y Gestión de Software</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En revisión</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-yellow-600 h-2 rounded-full" style="width: 40%"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-500">40%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-green-600 hover:text-green-900 mr-3">Ver</button>
+                                            <button class="text-blue-600 hover:text-blue-900">Editar</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Ana" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Ana González Ruiz</div>
+                                                    <div class="text-sm text-gray-500">3522114875</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ing. Desarrollo y Gestión de Software</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aprobado</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-green-600 h-2 rounded-full" style="width: 75%"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-500">75%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-green-600 hover:text-green-900 mr-3">Ver</button>
+                                            <button class="text-blue-600 hover:text-blue-900">Editar</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                                    <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Luis" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Luis Pérez Mora</div>
+                                                    <div class="text-sm text-gray-500">3522110653</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ing. Desarrollo y Gestión de Software</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Documentos faltantes</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-red-600 h-2 rounded-full" style="width: 20%"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-500">20%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-green-600 hover:text-green-900 mr-3">Ver</button>
+                                            <button class="text-blue-600 hover:text-blue-900">Editar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+                <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                <h3 class="text-lg font-medium text-gray-800">Cerrar Sesión</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+                ¿Estás seguro de que deseas cerrar tu sesión? Tendrás que volver a iniciar sesión para acceder al sistema.
+            </p>
+            <div class="flex space-x-3 justify-end">
+                <button id="cancelLogout" class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+                    Cancelar
+                </button>
+                <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

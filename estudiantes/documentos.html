@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UTN - Sistema de Estadías</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.5;
+            color: #374151;
+            background-color: #f3f4f6;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(to bottom, #166534, #14532d);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar.closed {
+            width: 70px;
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            border-bottom: 1px solid #15803d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 2rem;
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .logo-text {
+            font-weight: 600;
+        }
+
+        .sidebar.closed .logo-text,
+        .sidebar.closed .user-info,
+        .sidebar.closed .sidebar-text {
+            display: none;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #047857;
+            color: #bbf7d0;
+        }
+
+        .user-info {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #15803d;
+        }
+
+        .user-avatar {
+            width: 4rem;
+            height: 4rem;
+            background-color: #d1d5db;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .user-details {
+            font-size: 0.75rem;
+            color: #bbf7d0;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 1rem 0;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: #bbf7d0;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .nav-btn:hover {
+            color: white;
+            background-color: #047857;
+        }
+
+        .nav-btn.active {
+            color: white;
+            background-color: #047857;
+            border-right: 3px solid #4ade80;
+        }
+
+        .nav-icon {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.75rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-bar {
+            background: white;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 1.5rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-toggle {
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            color: #4b5563;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .menu-toggle:hover {
+            color: #1f2937;
+            background-color: #f3f4f6;
+        }
+
+        .page-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .top-bar-right {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-green {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .btn-green:hover {
+            background-color: #059669;
+        }
+
+        .btn-red {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .btn-red:hover {
+            background-color: #dc2626;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -0.25rem;
+            right: -0.25rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+            background-color: #f9fafb;
+        }
+
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            display: none;
+        }
+
+        .upload-section.show {
+            display: block;
+        }
+
+        .file-drop-area {
+            border: 2px dashed #cbd5e0;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-drop-area.active {
+            border-color: #48bb78;
+            background-color: #f0fff4;
+        }
+
+        .file-drop-area i {
+            font-size: 3rem;
+            color: #9ca3af;
+            margin-bottom: 0.75rem;
+        }
+
+        .file-drop-area p {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-drop-area .small-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            background-color: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .file-input-label:hover {
+            background-color: #059669;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .selected-files {
+            display: none;
+            margin-bottom: 1rem;
+        }
+
+        .selected-files.show {
+            display: block;
+        }
+
+        .file-list {
+            list-style: none;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9fafb;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .file-info i {
+            color: #6b7280;
+            margin-right: 0.5rem;
+        }
+
+        .file-name {
+            font-size: 0.875rem;
+            color: #374151;
+            max-width: 20rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-size {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 4rem;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background-color: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+
+        /* Documents Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .table th {
+            background-color: #f9fafb;
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .table td {
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .document-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .document-info i {
+            color: #6b7280;
+            margin-right: 0.75rem;
+        }
+
+        .document-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .document-size {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.125rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 9999px;
+        }
+
+        .badge-blue {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-purple {
+            background-color: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .badge-yellow {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-green {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-red {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-gray {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .action-btn.view {
+            color: #10b981;
+        }
+
+        .action-btn.download {
+            color: #3b82f6;
+        }
+
+        .action-btn.delete {
+            color: #ef4444;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h4 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #6b7280;
+        }
+
+        .empty-state p {
+            color: #9ca3af;
+            margin-top: 0.25rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            max-width: 56rem;
+            width: 100%;
+            margin: 1rem;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #4b5563;
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* Document Preview */
+        .document-preview {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .preview-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .preview-content {
+            flex: 1;
+            padding: 1rem;
+            overflow: auto;
+        }
+
+        .preview-meta {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .preview-meta-item {
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .preview-meta-label {
+            font-weight: 600;
+            color: #374151;
+            margin-right: 0.5rem;
+        }
+
+        .preview-meta-value {
+            color: #6b7280;
+        }
+
+        .preview-text {
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        /* Filter */
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-select {
+            position: relative;
+        }
+
+        .filter-select select {
+            appearance: none;
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.25rem 2rem 0.25rem 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .filter-select::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #374151;
+            pointer-events: none;
+            font-size: 0.75rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                z-index: 40;
+                height: 100vh;
+            }
+            
+            .sidebar.closed {
+                transform: translateX(-100%);
+                width: 250px;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <!-- Header with close button -->
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="../img/images.png" alt="UTN Logo" class="logo-img">
+                <span class="logo-text">UTN Estadías</span>
+            </div>
+            <button id="closeSidebarBtn" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- User Profile -->
+        <div class="user-info">
+            <div class="user-avatar">
+                <img src="../img/image.png" 
+                     alt="Foto de perfil">
+            </div>
+            <h3 id="userName" class="font-semibold text-sm"></h3>
+            <p id="userEmail" class="text-xs text-green-200"></p>
+            <p id="userPhone" class="text-xs text-green-200"></p>
+            <p class="user-details">9° Cuatrimestre</p>
+            <p class="user-details">Ing. Desarrollo y Gestión de Software</p>
+            <p class="user-details">Grupo: B</p>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <button class="nav-btn" data-section="inicio">
+                        <i class="fas fa-home nav-icon"></i>
+                        <span class="sidebar-text">Inicio</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-btn" data-section="cronograma">
+                        <i class="fas fa-calendar-alt nav-icon"></i>
+                        <span class="sidebar-text">Cronograma</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-btn active" data-section="documentos">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <span class="sidebar-text">Documentos</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-btn" data-section="seguimiento">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                        <span class="sidebar-text">Seguimiento</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-content">
+                <!-- Left side - Menu Toggle -->
+                <div class="top-bar-left">
+                    <button id="menuToggle" class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2 class="page-title">Documentos</h2>
+                </div>
+
+                <!-- Right side buttons -->
+                <div class="top-bar-right">
+                    <!-- Notifications Button -->
+                    <div class="relative">
+                        <button id="notificationsBtn" class="btn btn-green">
+                            <i class="fas fa-bell"></i>
+                            <span id="notificationBadge" class="notification-badge">3</span>
+                        </button>
+                    </div>
+
+                    <!-- Logout Button -->
+                    <button id="logoutBtn" class="btn btn-red">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-area">
+            <div class="container">
+                <!-- Upload Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Gestión de Documentos</h3>
+                        <button id="toggleUploadBtn" class="btn btn-green">
+                            <i class="fas fa-plus"></i>
+                            Subir documento
+                        </button>
+                    </div>
+                    
+                    <div id="uploadSection" class="upload-section">
+                        <div class="card-content">
+                            <div id="fileDropArea" class="file-drop-area">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Arrastra y suelta tus archivos aquí</p>
+                                <p class="small-text">o</p>
+                                <label for="fileInput" class="file-input-label">
+                                    <i class="fas fa-folder-open"></i>
+                                    Seleccionar archivos
+                                </label>
+                                <input id="fileInput" type="file" class="file-input" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.zip,.rar">
+                            </div>
+                            
+                            <div id="selectedFiles" class="selected-files">
+                                <h4 class="form-label">Archivos seleccionados:</h4>
+                                <ul id="fileList" class="file-list"></ul>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="documentType" class="form-label">Tipo de documento:</label>
+                                    <select id="documentType" class="form-select">
+                                        <option value="">Selecciona un tipo</option>
+                                        <option value="carta_aceptacion">Carta de Aceptación </option>
+                                        <option value="memoria_estadia">Memoria de Estadía</option>
+                                        <option value="cronograma">Cronograma</option>
+                                        <option value="evaluacion">Evaluación</option>
+                                        <option value="otros">Otros</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="documentDescription" class="form-label">Descripción (opcional):</label>
+                                    <textarea id="documentDescription" class="form-textarea" placeholder="Describe brevemente el documento..."></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button id="uploadBtn" class="btn btn-green btn-full" disabled>
+                                    <i class="fas fa-upload"></i>
+                                    Subir documentos
+                                </button>
+                                <button id="cancelUploadBtn" class="btn btn-secondary btn-full">
+                                    <i class="fas fa-times"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documents List -->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="filter-container">
+                            <h3 class="card-title">Mis Documentos</h3>
+                            <div class="filter-select">
+                                <select id="filterDocuments">
+                                    <option value="all">Todos los documentos</option>
+                                    <option value="carta_aceptacion">Carta de Aceptación </option>
+                                    <option value="memoria_estadia">Memoria de Estadía</option>
+                                    <option value="cronograma">Cronograma</option>
+                                    <option value="evaluacion">Evaluación</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="documentsTableBody">
+                                    <!-- Document rows will be dynamically inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div id="emptyDocuments" class="empty-state hidden">
+                            <i class="fas fa-folder-open"></i>
+                            <h4>No hay documentos subidos</h4>
+                            <p>Sube tu primer documento para comenzar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Preview Modal -->
+    <div id="documentPreviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="previewDocumentTitle" class="modal-title">Vista previa del documento</h3>
+                <button id="closePreviewModal" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="previewContent" class="modal-body">
+                <!-- Preview content will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button id="downloadPreviewBtn" class="btn btn-green">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                </button>
+                <button id="closePreviewBtn" class="btn btn-secondary">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let sidebarOpen = true;
+        let uploadSectionVisible = false;
+        let currentPreviewDocument = null;
+        
+        // Sample documents data
+        let documents = [
+            {
+                id: 1,
+                name: 'Carta de Presentación.pdf',
+                type: 'carta_presentacion',
+                status: 'Aprobado',
+                date: '2023-05-15',
+                size: '2.4 MB',
+                description: 'Carta de presentación para la empresa XYZ',
+                previewContent: `
+                    <div class="preview-container">
+                        <div class="preview-header">
+                            <h3 class="preview-title">Carta de Presentación</h3>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-meta">
+                                <div class="preview-meta-item">
+                                    <span class="preview-meta-label">Tipo:</span>
+                                    <span class="preview-meta-value">Carta de Presentación</span>
+                                </div>
+                                <div class="preview-meta-item">
+                                    <span class="preview-meta-label">Estado:</span>
+                                    <span class="preview-meta-value"><span class="badge badge-green">Aprobado</span></span>
+                                </div>
+                                <div class="preview-meta-item">
+                                    <span class="preview-meta-label">Fecha:</span>
+                                    <span class="preview-meta-value">15 de mayo de 2023</span>
+                                </div>
+                                <div class="preview-meta-item">
+                                    <span class="preview-meta-label">Descripción:</span>
+                                    <span class="preview-meta-value">Carta de presentación para la empresa XYZ</span>
+                                </div>
+                            </div>
+                            <div class="preview-text">
+                                <p>Estimados señores,</p>
+                                <p>Por medio de la presente me dirijo a ustedes para presentar al estudiante Carlos Martínez Gómez, quien realizará su estadía profesional en su empresa como parte de los requisitos para obtener el título de Ingeniero en Desarrollo y Gestión de Software.</p>
+                                <p>El estudiante cuenta con los conocimientos necesarios para desempeñarse en las áreas de desarrollo de software, bases de datos y gestión de proyectos, y estará bajo la supervisión del profesor Juan Pérez durante el periodo de estadía.</p>
+                                <p>Agradezco de antemano su apoyo y colaboración en este proceso formativo.</p>
+                                <p>Atentamente,</p>
+                                <p>Lic. María González</p>
+                                <p>Coordinadora de Estadías</p>
+                                <p>Universidad Tecnológica de la Región</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+        ];
+
+        // DOM elements
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const toggleUploadBtn = document.getElementById('toggleUploadBtn');
+        const uploadSection = document.getElementById('uploadSection');
+        const cancelUploadBtn = document.getElementById('cancelUploadBtn');
+        const fileDropArea = document.getElementById('fileDropArea');
+        const fileInput = document.getElementById('fileInput');
+        const selectedFiles = document.getElementById('selectedFiles');
+        const fileList = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const documentType = document.getElementById('documentType');
+        const documentDescription = document.getElementById('documentDescription');
+        const documentsTableBody = document.getElementById('documentsTableBody');
+        const emptyDocuments = document.getElementById('emptyDocuments');
+        const filterDocuments = document.getElementById('filterDocuments');
+        const documentPreviewModal = document.getElementById('documentPreviewModal');
+        const closePreviewModal = document.getElementById('closePreviewModal');
+        const closePreviewBtn = document.getElementById('closePreviewBtn');
+        const previewContent = document.getElementById('previewContent');
+        const previewDocumentTitle = document.getElementById('previewDocumentTitle');
+        const downloadPreviewBtn = document.getElementById('downloadPreviewBtn');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderDocumentsTable();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Sidebar toggle
+            menuToggle.addEventListener('click', toggleSidebar);
+            closeSidebarBtn.addEventListener('click', toggleSidebar);
+            
+            // Upload section toggle
+            toggleUploadBtn.addEventListener('click', toggleUploadSection);
+            cancelUploadBtn.addEventListener('click', hideUploadSection);
+            
+            // File drop area functionality
+            setupFileDropArea();
+            
+            // File input
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            // Document type change
+            documentType.addEventListener('change', updateUploadButtonState);
+            
+            // Upload button
+            uploadBtn.addEventListener('click', handleUpload);
+            
+            // Filter documents
+            filterDocuments.addEventListener('change', function() {
+                renderDocumentsTable(this.value);
+            });
+            
+            // Close preview modal
+            closePreviewModal.addEventListener('click', closeModal);
+            closePreviewBtn.addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            documentPreviewModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Download button in preview modal
+            downloadPreviewBtn.addEventListener('click', function() {
+                if (currentPreviewDocument) {
+                    downloadDocument(currentPreviewDocument.id);
+                }
+            });
+        }
+
+        function toggleSidebar() {
+            sidebarOpen = !sidebarOpen;
+            if (sidebarOpen) {
+                sidebar.classList.remove('closed');
+            } else {
+                sidebar.classList.add('closed');
+            }
+        }
+
+        function toggleUploadSection() {
+            uploadSectionVisible = !uploadSectionVisible;
+            if (uploadSectionVisible) {
+                showUploadSection();
+            } else {
+                hideUploadSection();
+            }
+        }
+
+        function showUploadSection() {
+            uploadSection.classList.add('show');
+            toggleUploadBtn.innerHTML = '<i class="fas fa-minus"></i> Ocultar subida';
+        }
+
+        function hideUploadSection() {
+            uploadSection.classList.remove('show');
+            toggleUploadBtn.innerHTML = '<i class="fas fa-plus"></i> Subir documento';
+            resetUploadForm();
+            uploadSectionVisible = false;
+        }
+
+        function setupFileDropArea() {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                fileDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                fileDropArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                fileDropArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                fileDropArea.classList.add('active');
+            }
+
+            function unhighlight() {
+                fileDropArea.classList.remove('active');
+            }
+
+            fileDropArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+        }
+
+        function handleFiles(files) {
+            if (files.length === 0) return;
+            
+            fileList.innerHTML = '';
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const listItem = document.createElement('li');
+                listItem.className = 'file-item';
+                
+                listItem.innerHTML = `
+                    <div class="file-info">
+                        <i class="fas ${getFileIcon(file.name)}"></i>
+                        <span class="file-name">${file.name}</span>
+                    </div>
+                    <span class="file-size">${formatFileSize(file.size)}</span>
+                `;
+                
+                fileList.appendChild(listItem);
+            }
+            
+            selectedFiles.classList.add('show');
+            updateUploadButtonState();
+        }
+
+        function updateUploadButtonState() {
+            const hasFiles = fileList.children.length > 0;
+            const hasType = documentType.value !== '';
+            uploadBtn.disabled = !(hasFiles && hasType);
+        }
+
+        function handleUpload() {
+            if (uploadBtn.disabled) return;
+            
+            const files = fileInput.files;
+            const type = documentType.value;
+            const description = documentDescription.value;
+            
+            // Create new document entries
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const newDoc = {
+                    id: documents.length > 0 ? Math.max(...documents.map(d => d.id)) + 1 : 1,
+                    name: file.name,
+                    type: type,
+                    status: 'Pendiente',
+                    date: new Date().toISOString().split('T')[0],
+                    size: formatFileSize(file.size),
+                    description: description,
+                    previewContent: `
+                        <div class="preview-container">
+                            <div class="preview-header">
+                                <h3 class="preview-title">${file.name}</h3>
+                            </div>
+                            <div class="preview-content">
+                                <div class="preview-meta">
+                                    <div class="preview-meta-item">
+                                        <span class="preview-meta-label">Tipo:</span>
+                                        <span class="preview-meta-value">${getTypeName(type)}</span>
+                                    </div>
+                                    <div class="preview-meta-item">
+                                        <span class="preview-meta-label">Estado:</span>
+                                        <span class="preview-meta-value"><span class="badge badge-yellow">Pendiente</span></span>
+                                    </div>
+                                    <div class="preview-meta-item">
+                                        <span class="preview-meta-label">Fecha:</span>
+                                        <span class="preview-meta-value">${formatDate(new Date().toISOString().split('T')[0])}</span>
+                                    </div>
+                                    <div class="preview-meta-item">
+                                        <span class="preview-meta-label">Descripción:</span>
+                                        <span class="preview-meta-value">${description || 'Ninguna'}</span>
+                                    </div>
+                                </div>
+                                <div class="preview-text">
+                                    <p>Este documento ha sido subido exitosamente y está pendiente de revisión por parte del coordinador de estadías.</p>
+                                    <p>Recibirás una notificación cuando el documento haya sido revisado.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                };
+                
+                documents.unshift(newDoc);
+            }
+            
+            // Reset form and hide upload section
+            hideUploadSection();
+            
+            // Update table
+            renderDocumentsTable(filterDocuments.value);
+            
+            // Show success message
+            alert('Documentos subidos correctamente');
+        }
+
+        function resetUploadForm() {
+            fileInput.value = '';
+            fileList.innerHTML = '';
+            selectedFiles.classList.remove('show');
+            documentType.value = '';
+            documentDescription.value = '';
+            uploadBtn.disabled = true;
+        }
+
+        function renderDocumentsTable(filter = 'all') {
+            const filteredDocs = filter === 'all' 
+                ? documents 
+                : documents.filter(doc => doc.type === filter);
+            
+            if (filteredDocs.length === 0) {
+                emptyDocuments.classList.remove('hidden');
+                documentsTableBody.innerHTML = '';
+                return;
+            }
+            
+            emptyDocuments.classList.add('hidden');
+            
+            documentsTableBody.innerHTML = filteredDocs.map(doc => `
+                <tr>
+                    <td>
+                        <div class="document-info">
+                            <i class="fas ${getFileIcon(doc.name)}"></i>
+                            <div>
+                                <div class="document-name">${doc.name}</div>
+                                <div class="document-size">${doc.size}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge ${getTypeBadgeClass(doc.type)}">
+                            ${getTypeName(doc.type)}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${getStatusBadgeClass(doc.status)}">
+                            ${doc.status}
+                        </span>
+                    </td>
+                    <td>${formatDate(doc.date)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button onclick="viewDocument(${doc.id})" class="action-btn view" title="Ver documento">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button onclick="downloadDocument(${doc.id})" class="action-btn download" title="Descargar">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button onclick="deleteDocument(${doc.id})" class="action-btn delete" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Helper functions
+        function getFileIcon(filename) {
+            const extension = filename.split('.').pop().toLowerCase();
+            switch(extension) {
+                case 'pdf': return 'fa-file-pdf';
+                case 'doc':
+                case 'docx': return 'fa-file-word';
+                case 'xls':
+                case 'xlsx': return 'fa-file-excel';
+                case 'ppt':
+                case 'pptx': return 'fa-file-powerpoint';
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'gif': return 'fa-file-image';
+                case 'zip':
+                case 'rar': return 'fa-file-archive';
+                default: return 'fa-file';
+            }
+        }
+
+        function getTypeName(type) {
+            const types = {
+                'carta_aceptacion': 'Carta de Aceptación',
+                'plan_memoria_estadiatrabajo': 'Memoria de Estadía',
+                'cronograma': 'Cronograma',
+                'evaluacion': 'Evaluación',
+                'otros': 'Otros'
+            };
+            return types[type] || type;
+        }
+
+        function getTypeBadgeClass(type) {
+            const classes = {
+                'carta_aceptacion': 'badge-blue',
+                'memoria_estadia': 'badge-purple',
+                'cronograma': 'badge-yellow',
+                'evaluacion': 'badge-red',
+                'otros': 'badge-gray'
+            };
+            return classes[type] || 'badge-gray';
+        }
+
+        function getStatusBadgeClass(status) {
+            const classes = {
+                'Aprobado': 'badge-green',
+                'Pendiente': 'badge-yellow',
+                'Rechazado': 'badge-red'
+            };
+            return classes[status] || 'badge-gray';
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('es-ES', options);
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Document actions
+        function viewDocument(id) {
+            currentPreviewDocument = documents.find(d => d.id === id);
+            if (!currentPreviewDocument) return;
+            
+            previewDocumentTitle.textContent = currentPreviewDocument.name;
+            previewContent.innerHTML = currentPreviewDocument.previewContent;
+            
+            documentPreviewModal.classList.add('show');
+        }
+
+        function downloadDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            
+            // In a real app, this would download the actual file
+            console.log(`Downloading document: ${doc.name}`);
+            alert(`Descargando documento: ${doc.name}`);
+        }
+
+        function deleteDocument(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este documento?')) {
+                documents = documents.filter(d => d.id !== id);
+                renderDocumentsTable(filterDocuments.value);
+            }
+        }
+
+        function closeModal() {
+            documentPreviewModal.classList.remove('show');
+            currentPreviewDocument = null;
+        }
+
+        // Make functions available globally for inline event handlers
+        window.viewDocument = viewDocument;
+        window.downloadDocument = downloadDocument;
+        window.deleteDocument = deleteDocument;
+    </script>
+</body>
+</html>

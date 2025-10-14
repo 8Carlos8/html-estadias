@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Universidad Tecnológica de Huejotzingo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            grid-template-rows: repeat(20, 1fr);
+        }
+
+        .bg-square {
+            background-color: rgba(0, 20, 5, 0.1);
+            transition: 2s ease;
+        }
+
+        .bg-square:hover {
+            background-color: rgba(0, 143, 57, 0.8);
+            transition: 0s;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 380px;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: perspective(1000px) translateY(0) rotateX(0deg) rotateY(0deg);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            }
+            50% {
+                transform: perspective(1000px) translateY(-20px) rotateX(2deg) rotateY(2deg);
+                box-shadow: 0 40px 70px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 143, 57, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .login-container:hover::before {
+            left: 100%;
+        }
+
+        .login-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #000, #008f39, #000);
+            background-size: 200% 200%;
+            animation: gradientFlow 3s linear infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .logo img {
+            max-width: 220px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        .logo h1 {
+            color: #000;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #008f39, transparent);
+            animation: underlineFlow 4s linear infinite;
+        }
+
+        @keyframes underlineFlow {
+            0% {
+                transform: scaleX(0);
+                transform-origin: left;
+            }
+            50% {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+            51% {
+                transform-origin: right;
+            }
+            100% {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+
+        .logo h2 {
+            color: #008f39;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-group input:focus {
+            border-color: #008f39;
+            box-shadow: 0 0 0 4px rgba(0, 143, 57, 0.2), inset 0 2px 10px rgba(0, 0, 0, 0.1);
+            transform: translateZ(10px);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: #777;
+            font-size: 16px;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+            background-color: transparent;
+            padding: 0 5px;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:valid + label {
+            top: -10px;
+            left: 15px;
+            font-size: 14px;
+            background-color: white;
+            color: #008f39;
+            transform: translateZ(20px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 143, 57, 0.3);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-container:hover {
+            transform: translateY(-5px) translateZ(10px);
+            box-shadow: 0 15px 30px rgba(0, 143, 57, 0.4);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #008f39, #006b2b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #777;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #008f39, transparent);
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 143, 57, 0.3), transparent 70%);
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: glowMove 15s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes glowMove {
+            0% {
+                transform: translate(-100px, -100px);
+            }
+            25% {
+                transform: translate(calc(100vw - 200px), -100px);
+            }
+            50% {
+                transform: translate(calc(100vw - 200px), calc(100vh - 200px));
+            }
+            75% {
+                transform: translate(-100px, calc(100vh - 200px));
+            }
+            100% {
+                transform: translate(-100px, -100px);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #008f39;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        @keyframes inputEntry {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) rotateX(90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .input-group:nth-child(1) {
+            animation: inputEntry 0.8s ease-out 0.2s both;
+        }
+
+        .input-group:nth-child(2) {
+            animation: inputEntry 0.8s ease-out 0.4s both;
+        }
+
+        .btn-container {
+            animation: inputEntry 0.8s ease-out 0.6s both;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation" id="bgAnimation"></div>
+    <div class="glow"></div>
+    
+    <div class="login-container">
+        <div class="logo">
+            <!-- Logo proporcionado -->
+            <img src="./img/images.png">
+            <h1>Universidad Tecnológica</h1>
+            <h2>de HUEJOTZINGO</h2>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="correo" required>
+                <label for="correo">Correo</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label for="password">Contraseña</label>
+            </div>
+            
+     <div class="btn-container">
+    <button type="submit" class="btn">Ingresar</button>
+</div>
+        </form>
+        
+        <div class="footer">
+            © 2025 Universidad Tecnológica de Huejotzingo
+        </div>
+    </div>
+
+<script src="./Apis/sesion.js"></script>
+
+</body>
+</html>

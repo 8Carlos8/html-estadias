@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Reportes</title>
+    
+    <link rel="stylesheet" href="../estudiantes/styles.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-gray-100 flex">
+        <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+            <!-- Header with close button -->
+            <div class="p-4 border-b border-green-700">
+                <div class="flex items-center">
+                    <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- User Profile -->
+            <div class="p-6 text-center border-b border-green-700">
+                <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
+                    <img src="../img/image.png" alt="Administrador" class="w-full h-full object-cover">
+                </div>
+               <h3 id="nombre-usuario" class="font-semibold text-sm"></h3>
+                <p id="rol-usuario" class="text-xs text-green-200 mb-2"></p>
+            </div>
+           <nav class="flex-1 py-4">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="index.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-home w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="documentacion.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-file-alt w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Documentación</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="alertas.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-bell w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Alertas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reportes.html"class="nav-btn active w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-chart-bar w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="flex-1 flex flex-col">
+            <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- Left side - Menu Toggle and UTN Logo -->
+                    <div class="flex items-center space-x-4">
+                        <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
+                    </div>
+                    <!-- Right side buttons -->
+                    <div class="flex space-x-3">
+                        <!-- Notifications Button -->
+                        <div class="relative">
+                            <button id="notificationsBtn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                </svg>
+                                <span id="notificationBadge" class="notification-badge">3</span>
+                            </button>
+                            <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50 p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">Notificaciones</h4>
+                                <ul class="text-sm text-gray-700 divide-y divide-gray-200">
+                                    <li class="py-2">Nueva solicitud de estadía de Juan Pérez.</li>
+                                    <li class="py-2">Documento "Carta de Aceptación" aprobado.</li>
+                                    <li class="py-2">Recordatorio: Validar CURP pendientes.</li>
+                                </ul>
+                                <div class="text-center mt-3">
+                                    <a href="#" class="text-sm text-blue-500 hover:text-blue-700">Ver todas</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Logout Button -->
+                        <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                            Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mainContent" class="flex-1 p-8 bg-gray-50 overflow-y-auto">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6">Reportes</h2>
+
+                <!-- Centrar el primer grid -->
+                <div class="w-full flex justify-center mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+                        <!-- Card Estudiantes Activos -->
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                            <div class="p-3 bg-blue-100 rounded-full text-blue-600">
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800">Estudiantes Activos</p>
+                                <p id="total-alumnos" class="text-4xl font-bold text-gray-800"></p>
+                                <p class="text-sm text-green-600 flex items-center"></p>
+                            </div>
+                        </div>
+                        <!-- Card Empresas Participantes -->
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                            <div class="p-3 bg-green-100 rounded-full text-green-600">
+                                <i class="fas fa-briefcase text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800">Empresas Participantes</p>
+                                <p id="contarEmpresas" class="text-4xl font-bold text-gray-900 mb-2"></p>
+                                <p class="text-sm text-green-600 flex items-center">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Centrar el segundo grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center max-w-6xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-graduation-cap text-blue-500 mr-2"></i> Listado Completo de Estudiantes
+                                </h3>
+                                <span class="bg-red-100 text-red-700 px-2 py-0.5 text-xs rounded-full font-semibold">Alta demanda</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Reporte detallado de todos los estudiantes actualmente en estadías profesionales.
+                                Incluye información de contacto, empresa asignada, periodo de estadía y estado actual.
+                            </p>
+                            <div class="text-sm text-gray-700 mb-2">
+                                <p><span class="font-medium">Estudiantes incluidos:</span> 142</p>
+                                <p><span class="font-medium">Campos:</span> Nombre, Carrera, Empresa, Supervisor</p>
+                                <p><span class="font-medium">Última actualización:</span> Hoy, 10:45 AM</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 mt-4">
+                            <button class="flex-1 px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors flex items-center justify-center">
+                                <i class="fas fa-file-pdf mr-2"></i> Exportar PDF
+                            </button>
+                           
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-building text-purple-500 mr-2"></i> Estadías por Empresa
+                                </h3>
+                                <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 text-xs rounded-full font-semibold">Uso frecuente</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Distribución de estudiantes por empresa participante. Incluye detalles de contactos de
+                                la empresa, número de estudiantes asignados y evaluaciones promedio.
+                            </p>
+                            <div class="text-sm text-gray-700 mb-2">
+                                <p><span class="font-medium">Empresas incluidas:</span> 36</p>
+                                <p><span class="font-medium">Campos:</span> Nombre, Sector, Estudiantes, Contacto</p>
+                                <p><span class="font-medium">Última actualización:</span> Ayer, 3:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 mt-4">
+                            <button class="flex-1 px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors flex items-center justify-center">
+                                <i class="fas fa-file-pdf mr-2"></i> Exportar PDF
+                            </button>
+                           
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-folder-open text-orange-500 mr-2"></i> Documentación Pendiente
+                                </h3>
+                                <span class="bg-red-100 text-red-700 px-2 py-0.5 text-xs rounded-full font-semibold">Urgente</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">
+                                     Listado de estudiantes con documentos pendientes de entrega o revisión. Incluye tipo
+                                de documento, fecha límite y estado actual.
+                            </p>
+                            <div class="text-sm text-gray-700 mb-2">
+                                <p><span class="font-medium">Documentos pendientes:</span> 27</p>
+                                <p><span class="font-medium">Estudiantes afectados:</span> 19</p>
+                                <p><span class="font-medium">Próximo vencimiento:</span> 2 días</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 mt-4">
+                            <button class="flex-1 px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors flex items-center justify-center">
+                                <i class="fas fa-file-pdf mr-2"></i> Exportar PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-calendar-alt text-teal-500 mr-2"></i> Calendario de Finalización
+                                </h3>
+                                <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 text-xs rounded-full font-semibold">Próximos eventos</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Cronograma de fechas de finalización de estadías por estudiante. Incluye alertas para
+                                estadías próximas a terminar y seguimiento requerido.
+                            </p>
+                            <div class="text-sm text-gray-700 mb-2">
+                                <p><span class="font-medium">Estadías próximas a terminar:</span> 15</p>
+                                <p><span class="font-medium">Próximos 15 días:</span> 8 finalizaciones</p>
+                                <p><span class="font-medium">Evaluaciones pendientes:</span> 22</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 mt-4">
+                            <button class="flex-1 px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors flex items-center justify-center">
+                                <i class="fas fa-file-pdf mr-2"></i> Exportar PDF
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg p-6 shadow-lg max-w-sm w-full">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Confirmar Cierre de Sesión</h3>
+            <p class="text-gray-600 mb-6">¿Estás seguro de que quieres cerrar tu sesión actual?</p>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelLogout" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors">Cancelar</button>
+                <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">Cerrar Sesión</button>
+            </div>
+        </div>
+    </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Sidebar toggle (para móviles)
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn'); // <--- aquí el cambio
+    const menuToggle = document.getElementById('menuToggle');
+  if (closeSidebarBtn && sidebar) {
+    closeSidebarBtn.addEventListener('click', function() {
+        sidebar.classList.add('hidden');
+    });
+}
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', function() {
+        sidebar.classList.remove('hidden');
+    });
+}
+
+    // Notificaciones dropdown
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    if (notificationsBtn && notificationsDropdown) {
+        notificationsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            notificationsDropdown.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function() {
+            notificationsDropdown.classList.add('hidden');
+        });
+        notificationsDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Logout modal
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const cancelLogout = document.getElementById('cancelLogout');
+    const confirmLogout = document.getElementById('confirmLogout');
+
+    if (logoutBtn && logoutModal) {
+        logoutBtn.addEventListener('click', function() {
+            logoutModal.classList.remove('hidden');
+        });
+    }
+    if (cancelLogout && logoutModal) {
+        cancelLogout.addEventListener('click', function() {
+            logoutModal.classList.add('hidden');
+        });
+    }
+    if (confirmLogout) {
+        confirmLogout.addEventListener('click', function() {
+            // Clear session data
+            localStorage.removeItem('token');
+            localStorage.removeItem('idU');
+            localStorage.removeItem('tipo_usuario');
+            localStorage.removeItem('nombre');
+            
+            window.location.href = '../login-uth.html';
+        });
+    }
+});
+</script>
+<script src="../Apis/Administracion/reportes/ActivoEstudiantes.js"></script>
+<script src="../Apis/Administracion/reportes/empresasAc.js"></script>
+</body>
+</html>
