@@ -1,3 +1,5 @@
+const { cache } = require("react");
+
 const currentCache = 'cache-v1.0';
 const files = [
     'admnistracion/index.html',
@@ -6,7 +8,7 @@ const files = [
     //'./css/style.css',
     './js/app.js',
     //Poner una página de no hya conexión para que se mande a mostrar ahi
-    //'pages/offline.html',
+    '/.pages/offline.html',
 ];
 
     self.addEventListener('install', event => {
@@ -19,3 +21,14 @@ const files = [
             })
         );
     });
+
+self.addEventListener('fetch', event => {
+    const resp = fetch(event.request)
+    .catch( ()=>
+    {
+        console.error("Recuperando la página sin conexión.", event);
+        return caches
+        .open(currentCache)
+        .then((cache) => cache.match('pages/offline.html')); 
+    })
+})
