@@ -436,7 +436,7 @@ button:hover {
 
 .focus\:ring-green-500:focus {
     --tw-ring-color: #10b981;
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    box-shadow: 0 0 0 3px rgba(80, 99, 92, 0.1);
 }
 
 .focus\:border-green-500:focus {
@@ -449,6 +449,77 @@ button:hover {
 
 .disabled\:cursor-not-allowed:disabled {
     cursor: not-allowed;
+}
+
+/* Card styles */
+.card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: 2px solid;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 200px;
+    position: relative;
+}
+
+.card-status {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    width: 100%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.completed {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.card-wrapper {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 200px;
+    max-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .card-wrapper {
+        flex: 0 1 calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .card-wrapper {
+        flex: 0 1 100%;
+    }
 }
 
 /* Responsive design */

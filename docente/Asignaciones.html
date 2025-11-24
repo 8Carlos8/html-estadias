@@ -56,7 +56,7 @@
                     <li>
                         <a href="Asignaciones.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
                             <i class="fas fa-clipboard-list w-4 h-4 mr-3"></i>
-                            Asignaciones
+                            Asignaciones 
                         </a>
                     </li>
                     <li>
@@ -107,94 +107,126 @@
                 </div>
             </div>
 
-            <div id="mainContent" class="flex-1 p-8 bg-gray-50">
-                <h1 class="text-2xl font-semibold text-gray-900 mb-6">DOCUMENTACION DE LOS ALUMNOS </h1>
-        <div class="bg-green-700 text-white p-6">
-            <h2 class="text-3xl font-bold">María Rodríguez López</h2>
-            <p class="text-lg opacity-90 mt-1">Ingeniería en Sistemas Computacionales</p>
-            <div class="inline-block bg-green-900 px-3 py-1 mt-2 text-sm font-semibold rounded-full">
-                A01234567
-            </div>
-        </div>
-        
-        <div class="p-6 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Datos Personales y Contacto</h3>
-            <div class="space-y-2 text-gray-700">
-                <p><strong>Correo:</strong> maria.rodriguez@universidad.edu.mx</p>
-                <p><strong>Empresa:</strong> Innovación Solutore</p>
-                <p><strong>Contacto Empresarial:</strong> Ana López</p>
-            </div>
-        </div>
-
-        <div class="p-6 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Datos de Estadía</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2 text-gray-700">
-                <p><strong>Proyecto:</strong> Nombre del proyecto</p>
-                <p><strong>Asesor Externo:</strong> Nombre del asesor</p>
-                <p><strong>Duración:</strong> 12 semanas (Inicio: 2025-08-01 | Fin: 2025-10-24)</p>
-                <p><strong>Apoyo:</strong> Beca económica</p>
-                <p><strong>Estatus General:</strong> <span class="text-orange-600 font-semibold">Solicitada</span></p>
-            </div>
-        </div>
-        
-        <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Documentos de Estadía</h3>
-            
-            <div class="space-y-4">
+           <div id="mainContent" class="flex-1 p-8 bg-gray-50 h-screen overflow-y-auto">
+                <h1 class="text-2xl font-semibold text-gray-900 mb-6">ASIGNACIONES DE ALUMNOS</h1>
                 
-                <div class="border p-4 rounded-lg flex justify-between items-center bg-green-50">
-                    <div>
-                        <p class="font-semibold text-gray-900">Carta de Presentación</p>
-                        <p class="text-xs text-gray-600">Subido: 14/07/2023</p>
-                        <div class="flex space-x-3 text-sm mt-1">
-                            <a href="#" class="text-blue-600 hover:underline"><i class="fas fa-eye mr-1"></i> Ver</a>
-                            <a href="#" class="text-blue-600 hover:underline"><i class="fas fa-download mr-1"></i> Descargar</a>
-                            <label for="uploadPresentacion" class="text-blue-600 hover:underline cursor-pointer"><i class="fas fa-upload mr-1"></i> Subir</label>
-                            <input type="file" id="uploadPresentacion" class="hidden" accept=".pdf, .doc, .docx">
+                <div class="bg-white p-6 rounded-lg shadow-xl mb-10">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-indigo-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-3/12">
+                                        Nombre del Alumno
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-3/12">
+                                        Carrera / Especialidad
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-2/12">
+                                        Grado / Grupo
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-4/12">
+                                        Empresa Anfitriona
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50 transition duration-150">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        María Rodríguez López
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                        Ingeniería en Sistemas Computacionales
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        8° A
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-indigo-600 font-medium">
+                                        Innovación Solutore
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition duration-150">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Juan Carlos Herrera
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                        Licenciatura en Administración (Marketing)
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        7° B
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-indigo-600 font-medium">
+                                        Global Logistics S.A.
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition duration-150">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Ana Sofía Trejo
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                        Técnico Superior Universitario en Mecatrónica
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        6° C
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-indigo-600 font-medium">
+                                        Automatización Industrial del Centro
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">    
+                        <div class="bg-blue-100 p-3 rounded-full mb-3">
+                            <i class="fas fa-file-alt text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Cartas de presentación</h3>
+                        <p class="text-sm text-gray-600 mb-4">Pendientes de revisión</p>
+                        <p id="listaCartasPres" class="text-4xl font-bold text-blue-600 mb-4"></p>
+                        <ul id="listaCartasPresLista" class="text-sm text-gray-700 space-y-2 w-full mb-4">                        </ul>
+                        <div class="flex space-x-3 w-full justify-center">
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
+                            <button class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i class="fas fa-check-circle mr-2"></i> Verificar</button>
                         </div>
                     </div>
-                    <span class="px-3 py-1 text-xs font-bold rounded bg-green-200 text-green-800">
-                        Aceptado (Completo)
-                    </span>
-                </div>
-                
-                <div class="border p-4 rounded-lg flex justify-between items-center bg-yellow-50">
-                    <div>
-                        <p class="font-semibold text-gray-900">Carta de Aceptación</p>
-                        <p class="text-xs text-gray-600">Límite: 2025-02-28</p>
-                        <div class="flex space-x-3 text-sm mt-1">
-                            <a href="#" class="text-blue-600 hover:underline"><i class="fas fa-eye mr-1"></i> Ver</a>
-                            <a href="#" class="text-blue-600 hover:underline"><i class="fas fa-download mr-1"></i> Descargar</a>
-                            <label for="uploadAceptacion" class="text-blue-600 hover:underline cursor-pointer"><i class="fas fa-upload mr-1"></i> Subir</label>
-                            <input type="file" id="uploadAceptacion" class="hidden" accept=".pdf, .doc, .docx">
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
+                        <div class="bg-green-100 p-3 rounded-full mb-3">
+                            <i class="fas fa-file-invoice text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Carta de aceptación</h3>
+                        <p class="text-sm text-gray-600 mb-4">Pendientes de revisión</p>
+                        <p  id="total_cartasAcep" class="text-4xl font-bold text-green-600 mb-4"></p>
+                        <ul id="listaCartasAcepLista" class="text-sm text-gray-700 space-y-2 w-full mb-4"></ul>
+                       
+                        <div class="flex space-x-3 w-full justify-center">
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
+                            <button class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i class="fas fa-check-circle mr-2"></i> Verificar</button>
                         </div>
                     </div>
-                    <span class="px-3 py-1 text-xs font-bold rounded bg-yellow-200 text-yellow-800">
-                        Pendiente de Revisión
-                    </span>
-                </div>
-                
-                <div class="border p-4 rounded-lg flex justify-between items-center bg-red-50">
-                    <div>
-                        <p class="font-semibold text-gray-900">Carta de Terminación</p>
-                        <p class="text-xs text-gray-600">Requerido al finalizar la estadía</p>
-                        <div class="flex space-x-3 text-sm mt-1">
-                            <a href="#" class="text-blue-600 hover:underline"><i class="fas fa-eye mr-1"></i> Ver</a>
-                            <a href="#" class="text-blue-600 hover:underline"><i class="fas fa-download mr-1"></i> Descargar</a>
-                            <label for="uploadTerminacion" class="text-blue-600 hover:underline cursor-pointer"><i class="fas fa-upload mr-1"></i> Subir</label>
-                            <input type="file" id="uploadTerminacion" class="hidden" accept=".pdf, .doc, .docx">
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
+                        <div class="bg-red-100 p-3 rounded-full mb-3">
+                            <i class="fas fa-file-export text-red-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Cartas de terminación</h3>
+                        <p class="text-sm text-gray-600 mb-4">Pendientes de revisión</p>
+                        <p id="total_cartas" class="text-4xl font-bold text-red-600 mb-4"></p>
+                        <ul id="listaCartasTerLista" class="text-sm text-gray-700 space-y-2 w-full mb-4"></ul>
+                        <div class="flex space-x-3 w-full justify-center">
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
+                            <button class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i class="fas fa-check-circle mr-2"></i> Verificar</button>
                         </div>
                     </div>
-                    <span class="px-3 py-1 text-xs font-bold rounded bg-red-200 text-red-800">
-                        Falta por Subir
-                    </span>
                 </div>
-                
                 </div>
+
+            </div>
+
+    
         </div>
-            
-
-
     <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
             <div class="flex items-center mb-4">

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentacion </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   
+        
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Documentacion</title>
+                <link rel="stylesheet" href="styles.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+                <style>
+                    .notification-badge {
+                        position: absolute;
+                        top: -0.25rem;
+                        right: -0.25rem;
+                        width: 1.25rem;
+                        height: 1.25rem;
+                        background-color: #ef4444;
+                        color: white;
+                        border-radius: 9999px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        border: 2px solid white;
+                    }
+                </style>
+            </head>
+            <body>
+                <div id="app" class="min-h-screen bg-gray-100 flex">
+                    <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+                        <!-- Header  -->
+                        <div class="p-4 border-b border-green-700">
+                            <div class="flex items-center">
+                                <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User Profile -->
+                        <div class="p-6 text-center border-b border-green-700">
+                            <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
+                                <img id="sidebar-avatar" src="../img/image.png" alt="Administrador" class="w-full h-full object-cover">
+                            </div>
+                            <h3 id="nombre-usuario" class="font-semibold text-sm"></h3>
+                            <p id="rol-usuario" class="text-xs text-green-200 mb-2"></p>
+                        </div>
+
+                        <!-- Navigation Menu -->
+                        <nav class="flex-1 py-4">
+                            <ul class="space-y-1">
+                                <li>
+                                    <a href="index.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left bg-green-700 rounded transition-colors ">
+                                        <i class="fas fa-home w-4 h-4 mr-3"></i>
+                                        <span class="text-sm">Inicio</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="documentacion.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                                        <i class="fas fa-file-alt w-4 h-4 mr-3"></i>
+                                        <span class="text-sm">Documentación</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="cronograma.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                                        <i class="fas fa-calendar-alt w-4 h-4 mr-3"></i>
+                                        <span class="text-sm">Cronograma</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="flex-1 flex flex-col">
+                        <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center space-x-4">
+                                    <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                        </svg>
+                                    </button>
+                                    <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
+                                </div>
+                                <div class="flex space-x-3">
+                                    <!-- Notificaciones -->
+                                    <div class="relative">
+                                        <button id="notificationsBtn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                            </svg>
+                                            <span id="notificationBadge" class="notification-badge">0</span>
+                                        </button>
+                                    </div>
+                                    <!-- Cerrar sesion-->
+                                    <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                        </svg>
+                                        Cerrar Sesión
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mainContent" class="flex-1 p-8 bg-gray-50">
+                            <h1 class="text-2xl font-semibold text-gray-900 mb-6">TUS DOCUMENTOS</h1>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                <div class="card-item bg-white border border-green-100 p-1 rounded-lg shadow flex flex-col items-center text-center transition duration-200">
+                                    <i class="fas fa-file-signature text-4xl text-green-700 mb-2"></i>
+                                    <span class="font-semibold text-gray-700">Carta Presentación</span>
+                                    <p class="text-xs text-gray-500 mt-1 mb-4">Descarga tu documento inicial.</p>
+
+                                    <div class="flex space-x-2 w-full justify-center">
+                                        <button id="openLlenarFormBtn" class="flex items-center px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded hover:bg-green-700 transition-colors" type="button">Llenar Formulario</button>
+                                        <a href="#" class="flex items-center px-3 py-1 text-gray-700 text-xs font-semibold rounded hover:bg-green-100 transition-colors"><i class="fas fa-download mr-1"></i> Descargar</a>
+                                    </div>
+                                    <div class="card-status mt-3" id="statusCartaPresentacion"><span class="status-badge pending" id="badgeCartaPresentacion">Falta por completar</span></div>
+                                </div>
+
+                                <div class="card-item bg-white border border-green-100 p-6 rounded-lg shadow flex flex-col items-center text-center transition duration-200">
+                                    <i class="fas fa-file-excel text-4xl text-green-700 mb-2"></i>
+                                    <span class="font-semibold text-gray-700">Carta Aceptación</span>
+                                    <p class="text-xs text-gray-500 mt-1 mb-4">Sube tu carta de aceptación.</p>
+                                    <label for="uploadAceptacion" class="flex items-center px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded hover:bg-green-700 transition-colors w-full justify-center cursor-pointer"><i class="fas fa-upload mr-2"></i> Subir Documento</label>
+                                    <input type="file" id="uploadAceptacion" class="hidden" accept=".pdf, .doc, .docx">
+                                    <div class="card-status mt-3" id="statusCartaAceptacion"><span class="status-badge pending" id="badgeCartaAceptacion">Falta por completar</span></div>
+                                </div>
+
+                                <div class="card-item bg-white border border-green-100 p-6 rounded-lg shadow flex flex-col items-center text-center transition duration-200">
+                                    <i class="fas fa-file-circle-check text-4xl text-green-700 mb-2"></i>
+                                    <span class="font-semibold text-gray-700">Carta Finalización</span>
+                                    <p class="text-xs text-gray-500 mt-1 mb-4">Documento de conclusión oficial.</p>
+                                    <label for="uploadFinalizacion" class="flex items-center px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded hover:bg-green-600 transition-colors w-full justify-center cursor-pointer"><i class="fas fa-upload mr-2"></i> Subir Documento</label>
+                                    <input type="file" id="uploadFinalizacion" class="hidden" accept=".pdf, .doc, .docx">
+                                    <div class="card-status mt-3" id="statusCartaFinalizacion"><span class="status-badge pending" id="badgeCartaFinalizacion">Falta por completar</span></div>
+                                </div>
+
+                                <div class="card-item bg-white border border-green-100 p-6 rounded-lg shadow flex flex-col items-center text-center transition duration-200">
+                                    <i class="fas fa-file-circle-check text-4xl text-green-700 mb-2"></i>
+                                    <span class="font-semibold text-gray-700">Memoria de estadia</span>
+                                    <p class="text-xs text-gray-500 mt-1 mb-4">Documento de conclusión oficial.</p>
+                                    <label for="uploadMemoria" class="flex items-center px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded hover:bg-green-600 transition-colors w-full justify-center cursor-pointer"><i class="fas fa-upload mr-2"></i> Subir Documento</label>
+                                    <input type="file" id="uploadMemoria" class="hidden" accept=".pdf, .doc, .docx">
+                                    <div class="card-status mt-3" id="statusMemoria"><span class="status-badge pending" id="badgeMemoria">Falta por completar</span></div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-18 mt-6">
+                                <div class="p-6 bg-white rounded-lg">
+                                    <h2 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4 flex items-center"><i class="fas fa-file-download mr-2 text-green-90"></i> Evaluación y Cronograma</h2>
+                                    <div class="flex flex-col space-y-4">
+                                        <div class="border p-3 rounded-lg flex flex-col bg-green-50">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-medium text-black-800">Formato de Evaluación Final (Excel)</span>
+                                                <div class="flex space-x-3 text-lg">
+                                                    <a href="archivos/formato_evaluacion.xlsx" download="Evaluacion_Final_Plantilla.xlsx" title="Descargar" class="text-yellow-600 hover:text-green-800 transition-colors"><i class="fas fa-download"></i></a>
+                                                    <label for="uploadEvaluacion" title="Subir" class="text-green-600 hover:text-green-800 transition-colors cursor-pointer"><i class="fas fa-upload"></i></label>
+                                                    <input type="file" id="uploadEvaluacion" class="hidden" accept=".pdf, .xls, .xlsx">
+                                                </div>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Descarga el formato oficial de evaluación para que tu asesor lo complete, o súbelo una vez firmado.</p>
+                                        </div>
+                                        <div class="border p-3 rounded-lg flex flex-col bg-green-50">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-medium text-black-800">Formato de cronograma (Excel)</span>
+                                                <div class="flex space-x-3 text-lg">
+                                                    <a href="archivos/formato_evaluacion.xlsx" download="Evaluacion_Final_Plantilla.xlsx" title="Descargar" class="text-yellow-600 hover:text-green-800 transition-colors"><i class="fas fa-download"></i></a>
+                                                    <label for="uploadCronograma" title="Subir" class="text-green-600 hover:text-green-800 transition-colors cursor-pointer"><i class="fas fa-upload"></i></label>
+                                                    <input type="file" id="uploadCronograma" class="hidden" accept=".pdf, .xls, .xlsx">
+                                                </div>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Descarga la plantilla de cronograma o sube el documento completo.</p>
+                                        </div>
+                                        <div class="border p-3 rounded-lg flex flex-col bg-green-50">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-medium text-black-800">Formato de carta de aceptacion (Excel)</span>
+                                                <div class="flex space-x-3 text-lg">
+                                                    <a href="archivos/formato_evaluacion.xls" title="Descargar" class="text-yellow-600 hover:text-green-800 transition-colors"><i class="fas fa-download"></i></a>
+                                                    <input type="file" id="uploadCartaAceptacion" class="hidden" accept=".pdf, .xls, .xlsx">
+                                                </div>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Descarga la plantilla de aceptacion</p>
+                                        </div>
+                                        <div class="border p-3 rounded-lg flex flex-col bg-green-50">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-medium text-black-800">Formato de carta de terminación (Excel)</span>
+                                                <div class="flex space-x-3 text-lg">
+                                                    <a href="archivos/formato_evaluacion.xls" title="Descargar" class="text-yellow-600 hover:text-green-800 transition-colors"><i class="fas fa-download"></i></a>
+                                                    <input type="file" id="uploadCartaTerminacion" class="hidden" accept=".pdf, .xls, .xlsx">
+                                                </div>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Descarga la plantilla de terminación</p>
+                                        </div>
+                                        <div class="border p-3 rounded-lg flex flex-col bg-green-50">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-medium text-black-800">Formato Memoria de estadia (Excel)</span>
+                                                <div class="flex space-x-3 text-lg">
+                                                    <a href="archivos/Documentos/Ale estadias/titulacion" title="Descargar" class="text-yellow-600 hover:text-purple-800 transition-colors"><i class="fas fa-download"></i></a>
+                                                    <input type="file" id="uploadMemoriaCronograma" class="hidden" accept=".pdf, .xls, .xlsx">
+                                                </div>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Descarga la plantilla de memoria de estadia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal: Llenar Formulario (único) -->
+                        <div id="llenarFormModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                            <div class="bg-white rounded-lg p-6 w-full max-w-lg mx-auto">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-medium text-gray-800">Llenar Formulario - Carta Presentación</h3>
+                                    <button id="closeLlenarForm" class="text-gray-400 hover:text-gray-600">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <form id="llenarForm">
+                                    <div class="mb-3">
+                                        <label for="empresaSelect" class="block text-sm font-medium text-gray-700 mb-1">Selecciona la empresa</label>
+                                        <select id="empresaSelect" name="empresa" class="w-full px-3 py-2 border border-gray-300 rounded">
+                                            <option value="">-- Selecciona empresa --</option>
+                                            <option value="empresa_a">Empresa A</option>
+                                            <option value="empresa_b">Empresa B</option>
+                                            <option value="empresa_c">Empresa C</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="asesorNombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre del asesor externo</label>
+                                        <input id="asesorNombre" name="asesorNombre" type="text" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Nombre completo">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="asesorPuesto" class="block text-sm font-medium text-gray-700 mb-1">Puesto del asesor</label>
+                                        <input id="asesorPuesto" name="asesorPuesto" type="text" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Puesto o cargo">
+                                    </div>
+
+                                    <div class="flex justify-end space-x-3 mt-4">
+                                        <button type="button" id="cancelLlenarBtn" class="px-4 py-2 border border-red-300 rounded hover:bg-gray-50">Cancelar</button>
+                                        <button type="submit" class=" fas fa-paper-plane mr-1 py-1 bg-green-600 text-white  hover:bg-green-500">Enviar </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Logout modal -->
+                        <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                            <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    <h3 class="text-lg font-medium text-gray-800">Cerrar Sesión</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">¿Estás seguro de que deseas cerrar tu sesión? Tendrás que volver a iniciar sesión para acceder al sistema.</p>
+                                <div class="flex space-x-3 justify-end">
+                                    <button id="cancelLogout" class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">Cancelar</button>
+                                    <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">Cerrar Sesión</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Sidebar
+                            const sidebar = document.getElementById('sidebar');
+                            const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+                            const menuToggle = document.getElementById('menuToggle');
+                            if (closeSidebarBtn && sidebar) closeSidebarBtn.addEventListener('click', () => sidebar.classList.add('hidden'));
+                            if (menuToggle && sidebar) menuToggle.addEventListener('click', () => sidebar.classList.remove('hidden'));
+
+                            // Notifications (optional)
+                            const notificationsBtn = document.getElementById('notificationsBtn');
+                            const notificationsDropdown = document.getElementById('notificationsDropdown');
+                            if (notificationsBtn && notificationsDropdown) {
+                                notificationsBtn.addEventListener('click', function(e) { e.stopPropagation(); notificationsDropdown.classList.toggle('hidden'); });
+                                document.addEventListener('click', () => notificationsDropdown.classList.add('hidden'));
+                                notificationsDropdown.addEventListener('click', e => e.stopPropagation());
+                            }
+
+                            // Logout
+                            const logoutBtn = document.getElementById('logoutBtn');
+                            const logoutModal = document.getElementById('logoutModal');
+                            const cancelLogout = document.getElementById('cancelLogout');
+                            const confirmLogout = document.getElementById('confirmLogout');
+                            if (logoutBtn && logoutModal) logoutBtn.addEventListener('click', () => logoutModal.classList.remove('hidden'));
+                            if (cancelLogout && logoutModal) cancelLogout.addEventListener('click', () => logoutModal.classList.add('hidden'));
+                            if (confirmLogout) confirmLogout.addEventListener('click', function() { localStorage.removeItem('token'); localStorage.removeItem('idU'); localStorage.removeItem('tipo_usuario'); localStorage.removeItem('nombre'); window.location.href = '../login-uth.html'; });
+
+                            // Modal elements and handlers
+                            const openLlenarBtn = document.getElementById('openLlenarFormBtn');
+                            const llenarModal = document.getElementById('llenarFormModal');
+                            const closeLlenarBtn = document.getElementById('closeLlenarForm');
+                            const cancelLlenarBtn = document.getElementById('cancelLlenarBtn');
+                            const llenarForm = document.getElementById('llenarForm');
+                            const empresaSelect = document.getElementById('empresaSelect');
+                            const asesorNombre = document.getElementById('asesorNombre');
+                            const asesorPuesto = document.getElementById('asesorPuesto');
+
+                            function openLlenarModal() { if (llenarModal) llenarModal.classList.remove('hidden'); setTimeout(()=> empresaSelect && empresaSelect.focus(), 50); }
+                            function closeLlenarModal() { if (llenarModal) llenarModal.classList.add('hidden'); }
+                            if (openLlenarBtn) openLlenarBtn.addEventListener('click', openLlenarModal);
+                            if (closeLlenarBtn) closeLlenarBtn.addEventListener('click', closeLlenarModal);
+                            if (cancelLlenarBtn) cancelLlenarBtn.addEventListener('click', closeLlenarModal);
+                            if (llenarModal) llenarModal.addEventListener('click', e => { if (e.target === llenarModal) closeLlenarModal(); });
+
+                            // Escape
+                            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { if (llenarModal && !llenarModal.classList.contains('hidden')) closeLlenarModal(); if (logoutModal && !logoutModal.classList.contains('hidden')) logoutModal.classList.add('hidden'); } });
+
+                            // Form submit
+                            if (llenarForm) {
+                                llenarForm.addEventListener('submit', function(e) {
+                                    e.preventDefault();
+                                    const empresa = empresaSelect ? empresaSelect.value.trim() : '';
+                                    const nombre = asesorNombre ? asesorNombre.value.trim() : '';
+                                    const puesto = asesorPuesto ? asesorPuesto.value.trim() : '';
+                                    const errors = [];
+                                    if (!empresa) errors.push('Selecciona una empresa.');
+                                    if (!nombre) errors.push('Ingresa el nombre del asesor.');
+                                    if (!puesto) errors.push('Ingresa el puesto del asesor.');
+                                    if (errors.length) { alert(errors.join('\n')); return; }
+                                    const payload = { empresa, nombre, puesto, fecha: new Date().toISOString() };
+                                    const stored = JSON.parse(localStorage.getItem('llenarFormEntries') || '[]'); stored.push(payload); localStorage.setItem('llenarFormEntries', JSON.stringify(stored));
+                                    updateStatusesFromStorage(); closeLlenarModal(); alert('Formulario guardado correctamente.'); console.log('Llenar Form saved:', payload);
+                                });
+                            }
+
+                            // Badges
+                            const badgeCartaPresentacion = document.getElementById('badgeCartaPresentacion');
+                            const badgeCartaAceptacion = document.getElementById('badgeCartaAceptacion');
+                            const badgeCartaFinalizacion = document.getElementById('badgeCartaFinalizacion');
+                            const badgeMemoria = document.getElementById('badgeMemoria');
+                            function setBadge(badgeEl, completed) { if (!badgeEl) return; badgeEl.textContent = completed ? 'Completado' : 'Falta por completar'; badgeEl.classList.toggle('completed', completed); badgeEl.classList.toggle('pending', !completed); }
+                            function updateStatusesFromStorage() { const storedEntries = JSON.parse(localStorage.getItem('llenarFormEntries') || '[]'); setBadge(badgeCartaPresentacion, storedEntries.length > 0); setBadge(badgeCartaAceptacion, localStorage.getItem('aceptacionUploaded') === '1'); setBadge(badgeCartaFinalizacion, localStorage.getItem('finalizacionUploaded') === '1'); setBadge(badgeMemoria, localStorage.getItem('memoriaUploaded') === '1'); }
+
+                            // File inputs
+                            const inputAceptacion = document.getElementById('uploadAceptacion'); if (inputAceptacion) inputAceptacion.addEventListener('change', function() { if (this.files && this.files.length) localStorage.setItem('aceptacionUploaded','1'); else localStorage.removeItem('aceptacionUploaded'); updateStatusesFromStorage(); });
+                            const inputFinalizacion = document.getElementById('uploadFinalizacion'); if (inputFinalizacion) inputFinalizacion.addEventListener('change', function() { if (this.files && this.files.length) localStorage.setItem('finalizacionUploaded','1'); else localStorage.removeItem('finalizacionUploaded'); updateStatusesFromStorage(); });
+                            const inputMemoria = document.getElementById('uploadMemoria'); if (inputMemoria) inputMemoria.addEventListener('change', function() { if (this.files && this.files.length) localStorage.setItem('memoriaUploaded','1'); else localStorage.removeItem('memoriaUploaded'); updateStatusesFromStorage(); });
+
+                            // Init
+                            updateStatusesFromStorage();
+                        });
+                        </script>
+                    </div>
+                </div>
+            </body>
+            </html>
+        }); 
+    }
+    updateStatusesFromStorage();
+});
+</script>
+<script src=""></script>
+<script src=""></script>
+<script src=""></script>
+<script src=""></script>
+</body>
+</html>

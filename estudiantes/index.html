@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard UTH - Sistema de Estadías</title>
-    <link rel="stylesheet" href="../estudiantes/styles.css">
+    <title>Estudiantes </title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Estilo mejorado para el badge de notificaciones */
         .notification-badge {
             position: absolute;
             top: -0.25rem;
             right: -0.25rem;
             width: 1.25rem;
             height: 1.25rem;
-            background-color: #ef4444;
+            background-color: #ef4444; /* Rojo */
             color: white;
             border-radius: 9999px;
             display: flex;
@@ -28,9 +28,8 @@
 </head>
 <body>
     <div id="app" class="min-h-screen bg-gray-100 flex">
-        <!-- Sidebar -->
-        <div id="sidebar" class="sidebar-open bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
-            <!-- Header with close button -->
+        <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+            <!-- Header  -->
             <div class="p-4 border-b border-green-700">
                 <div class="flex items-center">
                     <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
@@ -43,132 +42,62 @@
 
             <!-- User Profile -->
             <div class="p-6 text-center border-b border-green-700">
-                <div id="userProfile" class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
-                    <img src="../img/image.png" 
-                         alt="Foto de perfil" class="w-full h-full object-cover">
+                <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
+                    <img id="sidebar-avatar" src="../img/image.png" alt="Administrador" class="w-full h-full object-cover">
                 </div>
-                <h3 id="userName" class="font-semibold text-sm"></h3>
-                <p id="userEmail" class="text-xs text-green-200"></p>
-                <p id="userPhone" class="text-xs text-green-200"></p>
-                <p class="text-xs text-green-200 mb-2">9° Cuatrimestre</p>
-                <p class="text-xs text-green-200">Ing. Desarrollo y Gestión de Software</p>
-                <p class="text-xs text-green-200">Grupo: B</p>
-            </div>
+                <h3 id="nombre-usuario"class="font-semibold text-sm"></h3>
+                <p id="rol-usuario" class="text-xs text-green-200 mb-2"></p>
+            
+            </div> 
 
             <!-- Navigation Menu -->
             <nav class="flex-1 py-4">
                 <ul class="space-y-1">
                     <li>
-                        <button class="nav-btn active" data-section="inicio">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                            </svg>
+                        <a href="index.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left bg-green-700 rounded transition-colors ">
+                            <i class="fas fa-home w-4 h-4 mr-3"></i>
                             <span class="text-sm">Inicio</span>
-                        </button>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="documentacion.html"class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                            <i class="fas fa-file-alt w-4 h-4 mr-3"></i>
+                            <span class="text-sm">Documentación</span>
+                        </a>
                     </li>
                     <li>
-                        <button class="nav-btn" data-section="cronograma">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
+                        <a href="cronograma.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                             <i class="fas fa-calendar-alt w-4 h-4 mr-3"></i>
                             <span class="text-sm">Cronograma</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="nav-btn" data-section="documentos">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-5L12 5H5a2 2 0 00-2 2z"></path>
-                            </svg>
-                            <span class="text-sm">Documentos</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="nav-btn" data-section="seguimiento">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
-                            <span class="text-sm">Seguimiento</span>
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </nav>
         </div>
 
-        <!-- Main Content -->
         <div class="flex-1 flex flex-col">
-            <!-- Top Bar -->
             <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
                 <div class="flex justify-between items-center">
-                    <!-- Left side - Menu Toggle and UTN Logo -->
                     <div class="flex items-center space-x-4">
                         <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
                         </button>
-                        <img src="../img/images.png" 
-                             alt="UTN Logo" class="h-8 w-auto">
+                        <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
                     </div>
-
-                    <!-- Right side buttons -->
                     <div class="flex space-x-3">
-                        <!-- Notifications Button -->
+                        <!-- Notificaciones -->
                         <div class="relative">
                             <button id="notificationsBtn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                                 </svg>
-                                <span id="notificationBadge" class="notification-badge">3</span>
+                                <span id="notificationBadge" class="notification-badge">0</span>
                             </button>
-                            
-                            <!-- Notifications Dropdown -->
-                            <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                                <div class="p-4 border-b border-gray-200">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-sm font-medium">Notificaciones</h3>
-                                        <button id="closeNotifications" class="text-gray-400 hover:text-gray-600">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="max-h-64 overflow-y-auto">
-                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
-                                        <div class="flex items-start space-x-3">
-                                            <div class="w-2 h-2 rounded-full mt-2 bg-green-500"></div>
-                                            <div class="flex-1">
-                                                <h4 class="text-sm font-medium text-gray-800">Documento aprobado</h4>
-                                                <p class="text-xs text-gray-600 mt-1">Tu carta de presentación ha sido aprobada</p>
-                                                <p class="text-xs text-gray-400 mt-1">Hace 2 horas</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
-                                        <div class="flex items-start space-x-3">
-                                            <div class="w-2 h-2 rounded-full mt-2 bg-yellow-500"></div>
-                                            <div class="flex-1">
-                                                <h4 class="text-sm font-medium text-gray-800">Firma pendiente</h4>
-                                                <p class="text-xs text-gray-600 mt-1">Se requiere la firma del director para continuar</p>
-                                                <p class="text-xs text-gray-400 mt-1">Hace 1 día</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
-                                        <div class="flex items-start space-x-3">
-                                            <div class="w-2 h-2 rounded-full mt-2 bg-blue-500"></div>
-                                            <div class="flex-1">
-                                                <h4 class="text-sm font-medium text-gray-800">Nuevo mensaje</h4>
-                                                <p class="text-xs text-gray-600 mt-1">Tienes un mensaje del coordinador de estadías</p>
-                                                <p class="text-xs text-gray-400 mt-1">Hace 3 días</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- Logout Button -->
+                        <!-- Cerrar sesion-->
                         <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
@@ -179,14 +108,78 @@
                 </div>
             </div>
 
-            <!-- Main Content Area -->
             <div id="mainContent" class="flex-1 p-8 bg-gray-50">
-                <!-- Content will be dynamically loaded here -->
+                <h1 class="text-2xl font-semibold text-gray-900 mb-6">BIENVENIDO  AL PROCESO DE TU ESTADIA </h1>
+
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-8 shadow-md" role="alert">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-triangle text-red-700 text-xl mr-3"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-red-800">Avisos Importantes</p>
+                        <ul class="list-disc list-inside text-sm text-red-700 mt-1">
+                            <li>La fecha límite para subir la Carta de Aceptación es el **28 de Febrero**.</li>
+                            <li>Recuerda revisar el Cronograma para las actividades de esta semana.</li>
+                            <li>Solicita la Evaluación Parcial a tu Asesor Empresarial.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
+                    <p class="text-sm font-semibold text-gray-500 mb-2">Avance de Actividades</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-3xl font-bold text-gray-900">12 / 24</span>
+                        <p class="text-xs text-gray-600 text-right">
+                            **Semana Actual / Semanas Totales**
+                        </p>
+                    </div>
+                    <div class="mt-4 text-sm">
+                        <p class="text-green-600">Cumplidos: **7**</p>
+                        <p class="text-yellow-600">Pendientes: **3**</p>
+                        <p class="text-gray-600">Total: **10 Actividades**</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500">
+                    <p class="text-sm font-semibold text-gray-500 mb-2">Datos de la Estancia</p>
+                    <dl class="text-sm">
+                        <div class="py-2 border-b">
+                            <dt class="font-medium text-gray-900">Empresa Anfitriona:</dt>
+                            <dd class="text-blue-700">GTH Solutions S.A. de C.V.</dd>
+                        </div>
+                        <div class="py-2 border-b">
+                            <dt class="font-medium text-gray-900">Proyecto de Estadía:</dt>
+                            <dd class="text-gray-700">Desarrollo de Plataforma de Monitoreo Interno</dd>
+                        </div>
+                        <div class="py-2">
+                            <dt class="font-medium text-gray-900">Duración:</dt>
+                            <dd class="text-gray-700">24 Semanas</dd>
+                        </div>
+                    </dl>
+                </div>
+                
+        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-700">
+            <p class="text-sm font-semibold text-gray-500 mb-2">Asesor Académico</p>
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-user-tie text-4xl text-green-700"></i>
+                <div>
+                    <p class="font-bold text-gray-900">Lic. Juan Pérez García</p>
+                    <p class="text-xs text-gray-600">Contacto: juan.perez@universidad.edu</p>
+                </div>
+            </div>
+            <div class="mt-4 text-sm pt-2 border-t">
+                <p class="font-medium text-gray-900">Horario de Asesoría:</p>
+                <p class="text-gray-700">Miércoles, 15:00 - 17:00 hrs.</p>
             </div>
         </div>
-    </div>
+                    </div>
+                </div>           
 
-    <!-- Logout Confirmation Modal -->
+
     <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
             <div class="flex items-center mb-4">
@@ -206,11 +199,75 @@
                     Cerrar Sesión
                 </button>
             </div>
+            
         </div>
     </div>
 
-    <script src="../estudiantes/script.js"></script>
-    <script src="../Apis/Estudiante/verEstudiante.js"></script>
-    <script src="../Apis/Estudiante/verEstadia.js"></script>
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Sidebar toggle (para móviles)
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn'); // <--- aquí el cambio
+    const menuToggle = document.getElementById('menuToggle');
+  if (closeSidebarBtn && sidebar) {
+    closeSidebarBtn.addEventListener('click', function() {
+        sidebar.classList.add('hidden');
+    });
+}
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', function() {
+        sidebar.classList.remove('hidden');
+    });
+}
+
+    // Notificaciones dropdown
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    if (notificationsBtn && notificationsDropdown) {
+        notificationsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            notificationsDropdown.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function() {
+            notificationsDropdown.classList.add('hidden');
+        });
+        notificationsDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Logout modal
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const cancelLogout = document.getElementById('cancelLogout');
+    const confirmLogout = document.getElementById('confirmLogout');
+
+    if (logoutBtn && logoutModal) {
+        logoutBtn.addEventListener('click', function() {
+            logoutModal.classList.remove('hidden');
+        });
+    }
+    if (cancelLogout && logoutModal) {
+        cancelLogout.addEventListener('click', function() {
+            logoutModal.classList.add('hidden');
+        });
+    }
+    if (confirmLogout) {
+        confirmLogout.addEventListener('click', function() {
+            // Clear session data
+            localStorage.removeItem('token');
+            localStorage.removeItem('idU');
+            localStorage.removeItem('tipo_usuario');
+            localStorage.removeItem('nombre');
+            
+            window.location.href = '../login-uth.html';
+        }); 
+    }
+});
+</script>
+<script src=""></script>
+<script src=""></script>
+<script src=""></script>
+<script src=""></script>
 </body>
 </html>
