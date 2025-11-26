@@ -1,15 +1,12 @@
-const apiUrl = "http://127.0.0.1:8000"; // URL base de la API
-
+const apiUrl = "https://sis-estadias.companytechnova.tech"; // URL base de la API
 document.addEventListener('DOMContentLoaded', function() {
     // Crear cuadrícula de fondo interactiva
     const bgAnimation = document.getElementById('bgAnimation');
     const squares = 20 * 20;
-    
     for (let i = 0; i < squares; i++) {
         const square = document.createElement('div');
         square.classList.add('bg-square');
         bgAnimation.appendChild(square);
-
         square.addEventListener('mouseover', () => {
             square.style.transition = '0s';
             square.style.backgroundColor = 'rgba(0, 143, 57, 0.8)';
@@ -19,29 +16,23 @@ document.addEventListener('DOMContentLoaded', function() {
             square.style.backgroundColor = 'rgba(0, 20, 5, 0.1)';
         });
     }
-
     const loginForm = document.getElementById('loginForm');
     const btn = document.querySelector('.btn');
-
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
-
         const correo = document.getElementById('correo').value.trim();
         const password = document.getElementById('password').value.trim();
-
         if (!correo || !password) {
             alert('Por favor, complete todos los campos');
             return;
         }
-
         btn.textContent = 'Verificando...';
         btn.disabled = true;
-
         fetch(apiUrl + "/api/usuarios/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token, //Aquí se envia el token
+                "Content-type": "application/json",
+                "Accept": "application/json", //Aquí se envia el token
             },
             body: JSON.stringify({ correo, password }),
         })
@@ -60,11 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     const tipo_usuario = data.usuario.tipo_usuario;
                     if (tipo_usuario === "docente") {
-                        window.location.href = "../docente/inicio.html";
-                    } else if (tipo_usuario === "admin") {
+                        window.location.href = "../docente-asignaciones.html";
+                    } else if (tipo_usuario === "director") {
                         window.location.href = "../administracion/index.html";
                     } else {
-                        window.location.href = "./estudiantes/index.html";
+                        window.location.href = "../estudiantes/index.html";
                     }
                 }, 1500);
             } else {

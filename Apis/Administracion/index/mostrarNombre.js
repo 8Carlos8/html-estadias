@@ -1,6 +1,6 @@
-const apiUrl = "http://127.0.0.1:8000";
-const token = localStorage.getItem('token');
-const idU = localStorage.getItem('idU');
+//const apiUrl = "https://sis-estadias.companytechnova.tech";
+//const token = localStorage.getItem('token');
+//const idU = localStorage.getItem('idU');
 
 if (!token) {
     alert("No hay token almacenado");
@@ -10,6 +10,7 @@ if (!token) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
         },
         body: JSON.stringify({ id: Number(idU) }) // Solo envía el id como número
     })

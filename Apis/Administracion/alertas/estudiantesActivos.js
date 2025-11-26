@@ -1,4 +1,4 @@
-const apiUrl = "http://127.0.0.1:8000";
+const apiUrl = "https://sis-estadias.companytechnova.tech";
 const token = localStorage.getItem('token');
 
 if (!token) {

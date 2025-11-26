@@ -1,6 +1,6 @@
 
 /*Solicitudes de estadias */
-const apiUrl = "http://127.0.0.1:8000"; // URL base de la API
+const apiUrl = "https://sis-estadias.companytechnova.tech"; // URL base de la API
 const token = localStorage.getItem('token');// Obtener el token almacenado en el navegador (localStorage)
 
 // Verificar si el token existe
@@ -9,10 +9,11 @@ const token = localStorage.getItem('token');// Obtener el token almacenado en el
         window.location.href ="";// Redirigir a la página de inicio o login (aquí está vacío, puedes poner la URL)
     } else {
         // Si hay token, hacer una solicitud POST a la API para contar las estadías
-        fetch(apiUrl + "/api/estadia/contarEstadias", {
+        fetch(apiUrl + "/api/empresa/contarEmpresas", {
             method: "POST",// Método HTTP POST
             headers: {
                 "Content-Type": "application/json",// Indicamos que el cuerpo es JSON
+                "Accept": "application/json",
             },
             body: JSON.stringify({ token }),// Enviamos el token como JSON en el cuerpo de la petición
         })
