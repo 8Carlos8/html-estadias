@@ -6,8 +6,8 @@
   "theme_color": "#10AD23",
   "orientation": "landscape",
   "display": "standalone",
-  "start_url": "login.html",
-  "scope": "/integradora-main",
+  "start_url": "./login-uth.html",
+  "scope": "./",
   "lang": "es-MX",
   "icons": [
     {
