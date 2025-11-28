@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
             right: -0.25rem;
             width: 1.25rem;
             height: 1.25rem;
-            background-color: #ef4444; /* Rojo */
+            background-color: #ef4444;
+            /* Rojo */
             color: white;
             border-radius: 9999px;
             display: flex;
@@ -26,15 +28,19 @@
         }
     </style>
 </head>
+
 <body>
     <div id="app" class="min-h-screen bg-gray-100 flex">
-        <div id="sidebar" class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
+        <div id="sidebar"
+            class="sidebar-open w-64 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col">
             <!-- Header  -->
             <div class="p-4 border-b border-green-700">
                 <div class="flex items-center">
-                    <button id="closeSidebarBtn" class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
+                    <button id="closeSidebarBtn"
+                        class="p-2 text-white hover:text-green-200 hover:bg-green-700 rounded transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
@@ -43,30 +49,34 @@
             <!-- User Profile -->
             <div class="p-6 text-center border-b border-green-700">
                 <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-3 overflow-hidden">
-                    <img id="sidebar-avatar" src="../img/image.png" alt="Administrador" class="w-full h-full object-cover">
+                    <img id="sidebar-avatar" src="../img/image.png" alt="Administrador"
+                        class="w-full h-full object-cover">
                 </div>
-                <h3 id="nombre-usuario"class="font-semibold text-sm"></h3>
+                <h3 id="nombre-usuario" class="font-semibold text-sm"></h3>
                 <p id="rol-usuario" class="text-xs text-green-200 mb-2"></p>
-            
-            </div> 
+
+            </div>
 
             <!-- Navigation Menu -->
             <nav class="flex-1 py-4">
                 <ul class="space-y-1">
                     <li>
-                        <a href="Asignaciones.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                        <a href="Asignaciones.html"
+                            class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
                             <i class="fas fa-clipboard-list w-4 h-4 mr-3"></i>
-                            Asignaciones 
+                            Asignaciones
                         </a>
                     </li>
                     <li>
-                        <a href="Documentos.html" class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                        <a href="Documentos.html"
+                            class="nav-btn w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
                             <i class="fas fa-folder w-4 h-4 mr-3"></i>
                             Documentos
                         </a>
                     </li>
                     <li>
-                        <a href="calendarioS.html" class="nav-btn active w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
+                        <a href="calendarioS.html"
+                            class="nav-btn active w-full flex items-center px-4 py-2 text-left hover:bg-green-700 rounded transition-colors">
                             <i class="fas fa-calendar-alt w-4 h-4 mr-3"></i>
                             Seguimiento
                         </a>
@@ -79,9 +89,11 @@
             <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-4">
-                        <button id="menuToggle" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
+                        <button id="menuToggle"
+                            class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
                         </button>
                         <img src="../img/images.png" alt="UTN Logo" class="h-8 w-auto">
@@ -89,17 +101,23 @@
                     <div class="flex space-x-3">
                         <!-- Notificaciones -->
                         <div class="relative">
-                            <button id="notificationsBtn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
+                            <button id="notificationsBtn"
+                                class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors relative">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                    </path>
                                 </svg>
                                 <span id="notificationBadge" class="notification-badge">0</span>
                             </button>
                         </div>
                         <!-- Cerrar sesion-->
-                        <button id="logoutBtn" class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
+                        <button id="logoutBtn"
+                            class="flex items-center px-3 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                </path>
                             </svg>
                             Cerrar Sesión
                         </button>
@@ -107,24 +125,28 @@
                 </div>
             </div>
 
-           <div id="mainContent" class="flex-1 p-8 bg-gray-50 h-screen overflow-y-auto">
+            <div id="mainContent" class="flex-1 p-8 bg-gray-50 h-screen overflow-y-auto">
                 <h1 class="text-2xl font-semibold text-gray-900 mb-6">ASIGNACIONES DE ALUMNOS</h1>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-xl mb-10">
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-indigo-50">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-3/12">
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-3/12">
                                         Nombre del Alumno
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-3/12">
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-3/12">
                                         Carrera / Especialidad
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-2/12">
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-2/12">
                                         Grado / Grupo
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-4/12">
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider w-4/12">
                                         Empresa Anfitriona
                                     </th>
                                 </tr>
@@ -175,39 +197,48 @@
                             </tbody>
                         </table>
                     </div>
-                </div> 
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">    
+
+                    <div
+                        class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
                         <div class="bg-blue-100 p-3 rounded-full mb-3">
                             <i class="fas fa-file-alt text-blue-600 text-xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-1">Cartas de presentación</h3>
                         <p class="text-sm text-gray-600 mb-4">Pendientes de revisión</p>
                         <p id="listaCartasPres" class="text-4xl font-bold text-blue-600 mb-4"></p>
-                        <ul id="listaCartasPresLista" class="text-sm text-gray-700 space-y-2 w-full mb-4">                        </ul>
+                        <ul id="listaCartasPresLista" class="text-sm text-gray-700 space-y-2 w-full mb-4"> </ul>
                         <div class="flex space-x-3 w-full justify-center">
-                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
-                            <button class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i class="fas fa-check-circle mr-2"></i> Verificar</button>
+                            <button
+                                class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
+                            <button
+                                class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i
+                                    class="fas fa-check-circle mr-2"></i> Verificar</button>
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
+                    <div
+                        class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
                         <div class="bg-green-100 p-3 rounded-full mb-3">
                             <i class="fas fa-file-invoice text-green-600 text-xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-1">Carta de aceptación</h3>
                         <p class="text-sm text-gray-600 mb-4">Pendientes de revisión</p>
-                        <p  id="total_cartasAcep" class="text-4xl font-bold text-green-600 mb-4"></p>
+                        <p id="total_cartasAcep" class="text-4xl font-bold text-green-600 mb-4"></p>
                         <ul id="listaCartasAcepLista" class="text-sm text-gray-700 space-y-2 w-full mb-4"></ul>
-                       
+
                         <div class="flex space-x-3 w-full justify-center">
-                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
-                            <button class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i class="fas fa-check-circle mr-2"></i> Verificar</button>
+                            <button
+                                class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
+                            <button
+                                class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i
+                                    class="fas fa-check-circle mr-2"></i> Verificar</button>
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
+                    <div
+                        class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
                         <div class="bg-red-100 p-3 rounded-full mb-3">
                             <i class="fas fa-file-export text-red-600 text-xl"></i>
                         </div>
@@ -216,105 +247,114 @@
                         <p id="total_cartas" class="text-4xl font-bold text-red-600 mb-4"></p>
                         <ul id="listaCartasTerLista" class="text-sm text-gray-700 space-y-2 w-full mb-4"></ul>
                         <div class="flex space-x-3 w-full justify-center">
-                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
-                            <button class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i class="fas fa-check-circle mr-2"></i> Verificar</button>
+                            <button
+                                class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors">Detalles</button>
+                            <button
+                                class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors"><i
+                                    class="fas fa-check-circle mr-2"></i> Verificar</button>
                         </div>
                     </div>
                 </div>
-                </div>
-
             </div>
 
-    
         </div>
+
+
+    </div>
     <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
             <div class="flex items-center mb-4">
                 <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
                 </svg>
                 <h3 class="text-lg font-medium text-gray-800">Cerrar Sesión</h3>
             </div>
             <p class="text-gray-600 mb-6">
-                ¿Estás seguro de que deseas cerrar tu sesión? Tendrás que volver a iniciar sesión para acceder al sistema.
+                ¿Estás seguro de que deseas cerrar tu sesión? Tendrás que volver a iniciar sesión para acceder al
+                sistema.
             </p>
             <div class="flex space-x-3 justify-end">
-                <button id="cancelLogout" class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+                <button id="cancelLogout"
+                    class="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
                     Cancelar
                 </button>
-                <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+                <button id="confirmLogout"
+                    class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
                     Cerrar Sesión
                 </button>
             </div>
-            
+
         </div>
     </div>
 
- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Sidebar toggle (para móviles)
-    const sidebar = document.getElementById('sidebar');
-    const closeSidebarBtn = document.getElementById('closeSidebarBtn'); // <--- aquí el cambio
-    const menuToggle = document.getElementById('menuToggle');
-  if (closeSidebarBtn && sidebar) {
-    closeSidebarBtn.addEventListener('click', function() {
-        sidebar.classList.add('hidden');
-    });
-}
-if (menuToggle && sidebar) {
-    menuToggle.addEventListener('click', function() {
-        sidebar.classList.remove('hidden');
-    });
-}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sidebar toggle (para móviles)
+            const sidebar = document.getElementById('sidebar');
+            const closeSidebarBtn = document.getElementById('closeSidebarBtn'); // <--- aquí el cambio
+            const menuToggle = document.getElementById('menuToggle');
+            if (closeSidebarBtn && sidebar) {
+                closeSidebarBtn.addEventListener('click', function () {
+                    sidebar.classList.add('hidden');
+                });
+            }
+            if (menuToggle && sidebar) {
+                menuToggle.addEventListener('click', function () {
+                    sidebar.classList.remove('hidden');
+                });
+            }
 
-    // Notificaciones dropdown
-    const notificationsBtn = document.getElementById('notificationsBtn');
-    const notificationsDropdown = document.getElementById('notificationsDropdown');
-    if (notificationsBtn && notificationsDropdown) {
-        notificationsBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            notificationsDropdown.classList.toggle('hidden');
-        });
-        document.addEventListener('click', function() {
-            notificationsDropdown.classList.add('hidden');
-        });
-        notificationsDropdown.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
+            // Notificaciones dropdown
+            const notificationsBtn = document.getElementById('notificationsBtn');
+            const notificationsDropdown = document.getElementById('notificationsDropdown');
+            if (notificationsBtn && notificationsDropdown) {
+                notificationsBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    notificationsDropdown.classList.toggle('hidden');
+                });
+                document.addEventListener('click', function () {
+                    notificationsDropdown.classList.add('hidden');
+                });
+                notificationsDropdown.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                });
+            }
 
-    // Logout modal
-    const logoutBtn = document.getElementById('logoutBtn');
-    const logoutModal = document.getElementById('logoutModal');
-    const cancelLogout = document.getElementById('cancelLogout');
-    const confirmLogout = document.getElementById('confirmLogout');
+            // Logout modal
+            const logoutBtn = document.getElementById('logoutBtn');
+            const logoutModal = document.getElementById('logoutModal');
+            const cancelLogout = document.getElementById('cancelLogout');
+            const confirmLogout = document.getElementById('confirmLogout');
 
-    if (logoutBtn && logoutModal) {
-        logoutBtn.addEventListener('click', function() {
-            logoutModal.classList.remove('hidden');
+            if (logoutBtn && logoutModal) {
+                logoutBtn.addEventListener('click', function () {
+                    logoutModal.classList.remove('hidden');
+                });
+            }
+            if (cancelLogout && logoutModal) {
+                cancelLogout.addEventListener('click', function () {
+                    logoutModal.classList.add('hidden');
+                });
+            }
+            if (confirmLogout) {
+                confirmLogout.addEventListener('click', function () {
+                    // Clear session data
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('idU');
+                    localStorage.removeItem('tipo_usuario');
+                    localStorage.removeItem('nombre');
+
+                    window.location.href = '../login-uth.html';
+                });
+            }
         });
-    }
-    if (cancelLogout && logoutModal) {
-        cancelLogout.addEventListener('click', function() {
-            logoutModal.classList.add('hidden');
-        });
-    }
-    if (confirmLogout) {
-        confirmLogout.addEventListener('click', function() {
-            // Clear session data
-            localStorage.removeItem('token');
-            localStorage.removeItem('idU');
-            localStorage.removeItem('tipo_usuario');
-            localStorage.removeItem('nombre');
-            
-            window.location.href = '../login-uth.html';
-        }); 
-    }
-});
-</script>
-<script src=""></script>
-<script src=""></script>
-<script src=""></script>
-<script src=""></script>
+    </script>
+    <script src=""></script>
+    <script src=""></script>
+    <script src=""></script>
+    <script src=""></script>
 </body>
+
 </html>

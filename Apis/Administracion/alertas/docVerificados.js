@@ -9,7 +9,8 @@
         fetch(apiUrl + "/api/verifi/contarDocVerificados", {
             method: "POST",// Método HTTP POST
             headers: {
-                "Content-Type": "application/json",// Indicamos que el cuerpo es JSON
+                "Content-Type": "application/json",
+                "Accept": "application/json",// Indicamos que el cuerpo es JSON
             },
             body: JSON.stringify({ token }),// Enviamos el token como JSON en el cuerpo de la petición
         })

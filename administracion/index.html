@@ -75,7 +75,7 @@
                  
                 </ul>
             </nav>
-        </div>
+        </div>  
 
         <div class="flex-1 flex flex-col">
             <div class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
@@ -107,8 +107,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
-
+            </div>        
             <div id="mainContent" class="flex-1 p-8 bg-gray-50">
                 <h1 class="text-2xl font-semibold text-gray-900 mb-6">BIENVENIDO</h1>
 
@@ -123,6 +122,7 @@
                             <i class="fas fa-arrow-up mr-1"></i> 20% vs semana anterior
                         </p>
                     </div>
+                    
 
                     <div class="bg-white shadow rounded-lg p-6 flex flex-col items-start">
                         <div class="flex items-center mb-3">
@@ -218,9 +218,35 @@
                                 </li>
                             </ul>
                         </div>
+                        
                     </div>
                 </div>
             </div>
+            <div class="bg-white shadow rounded-lg p-6 mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-medium text-gray-700">Detalle de Cartas Solicitadas</h3>
+                        <button class="bg-green-700 text-white px-4 py-2 rounded text-sm hover:bg-green-800 transition-colors">
+                            <i class="fas fa-sync-alt mr-2"></i> Actualizar
+                        </button>
+                    </div>
+            <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alumno</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empresa</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Firma Director</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-cartas-body" class="bg-white divide-y divide-gray-200">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
         </div>
     </div>
 
@@ -314,6 +340,6 @@ if (menuToggle && sidebar) {
 <script src="../Apis/Administracion/index/empresas.js"> </script>
 <script src="../Apis/Administracion/index/estudiantesActivos.js"></script>
 <script src="../Apis/Administracion/index/mostrarNombre.js"></script>
-
+<script src="../Apis/Administracion/index/solicitudesEstadia.js"></script>
 </body>
 </html>
